@@ -1,0 +1,2598 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Prontuario · Acconciatori, Estetisti, Tatuaggio & Piercing</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   PRONTUARIO OPERATIVO — ACCONCIATORI · ESTETISTI · TATUAGGIO · PIERCING
+   D.C.C. 18/2018 · mod. D.C.C. 6/2021
+   U.O. San Lorenzo — Ufficio Polizia Amministrativa
+   Design System: Apple-inspired · Dark mode
+═══════════════════════════════════════════════════════════════ */
+
+:root{
+  /* Surfaces */
+  --bg-base:        #000000;
+  --bg-elevated:    #1c1c1e;
+  --bg-raised:      #2c2c2e;
+  --bg-higher:      #3a3a3c;
+  --bg-glass:       rgba(28,28,30,.72);
+
+  /* Hairlines */
+  --sep:            rgba(255,255,255,.08);
+  --sep-strong:     rgba(255,255,255,.14);
+
+  /* Text */
+  --label:          #f5f5f7;
+  --secondary:      #a1a1a6;
+  --tertiary:       #6e6e73;
+  --quaternary:     #48484a;
+
+  /* Accents (Apple-system inspired) */
+  --gold:           #f5c14e;
+  --gold-soft:      rgba(245,193,78,.12);
+  --blue:           #0a84ff;
+  --blue-soft:      rgba(10,132,255,.12);
+  --green:          #30d158;
+  --green-soft:     rgba(48,209,88,.12);
+  --orange:         #ff9f0a;
+  --orange-soft:    rgba(255,159,10,.12);
+  --red:            #ff453a;
+  --red-soft:       rgba(255,69,58,.12);
+  --purple:         #bf5af2;
+  --purple-soft:    rgba(191,90,242,.12);
+  --teal:           #64d2ff;
+  --teal-soft:      rgba(100,210,255,.12);
+
+  /* Shadows */
+  --shadow-sm:      0 1px 2px rgba(0,0,0,.5);
+  --shadow-md:      0 4px 16px rgba(0,0,0,.4), 0 1px 3px rgba(0,0,0,.3);
+  --shadow-lg:      0 12px 40px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.3);
+
+  /* Radius */
+  --r-xs:  6px;
+  --r-sm:  10px;
+  --r-md:  14px;
+  --r-lg:  18px;
+  --r-xl:  22px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+
+body{
+  background: var(--bg-base);
+  color: var(--label);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter",
+               "Helvetica Neue", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01","cv11";
+  letter-spacing: -0.003em;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Aurora ambient background */
+body::before{
+  content:"";
+  position: fixed; inset: -20% -10% auto auto;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle at 70% 30%, rgba(245,193,78,.06), transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+body::after{
+  content:"";
+  position: fixed; left: -15%; bottom: -25%;
+  width: 55vw; height: 55vw;
+  background: radial-gradient(circle at 30% 70%, rgba(10,132,255,.04), transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══ HEADER ═══ */
+.topbar{
+  position: relative; z-index: 10;
+  padding: 56px 40px 40px;
+  padding-left: max(40px, env(safe-area-inset-left));
+  padding-right: max(40px, env(safe-area-inset-right));
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.org-chip{
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px;
+  background: var(--gold-soft);
+  border: 1px solid rgba(245,193,78,.22);
+  border-radius: 100px;
+  color: var(--gold);
+  font-size: 11px; font-weight: 590;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.org-chip .dot{
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(245,193,78,.8);
+}
+.hero-title{
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  color: var(--label);
+  margin: 0 0 14px 0;
+  max-width: 860px;
+}
+.hero-title em{
+  font-style: normal;
+  background: linear-gradient(135deg, var(--gold) 0%, #ffd87a 60%, #e0a840 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub{
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--secondary);
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  margin: 0 0 28px 0;
+  max-width: 720px;
+}
+.hero-meta{
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+.meta-chip{
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 12px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--sep);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--secondary);
+  letter-spacing: 0;
+}
+.meta-chip svg{
+  width: 13px; height: 13px;
+  color: var(--tertiary);
+}
+
+/* ═══ NAV PILL ═══ */
+.nav-wrap{
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border-bottom: 0.5px solid var(--sep);
+  padding: 12px 40px;
+}
+.nav-pill{
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex; gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.nav-pill::-webkit-scrollbar{ display: none; }
+.nav-item{
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .18s cubic-bezier(.4,0,.2,1);
+  letter-spacing: -0.01em;
+}
+.nav-item:hover{
+  color: var(--label);
+  background: rgba(255,255,255,.05);
+}
+.nav-item.active{
+  background: var(--bg-raised);
+  color: var(--label);
+  font-weight: 590;
+}
+.nav-item .ic{
+  width: 16px; height: 16px;
+  display: inline-flex; align-items: center; justify-content: center;
+  opacity: .9;
+}
+
+/* ═══ MAIN LAYOUT ═══ */
+main{
+  position: relative; z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 40px 96px;
+}
+.section{ display: none; }
+.section.active{ display: block; animation: fadeUp .4s cubic-bezier(.4,0,.2,1); }
+@keyframes fadeUp{
+  from{ opacity: 0; transform: translateY(12px); }
+  to{   opacity: 1; transform: translateY(0); }
+}
+
+/* ═══ SECTION HEADER ═══ */
+.sec-head{
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 0.5px solid var(--sep);
+}
+.sec-eyebrow{
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.sec-title{
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.028em;
+  line-height: 1.12;
+  margin: 0 0 10px 0;
+}
+.sec-desc{
+  font-size: 16px;
+  color: var(--secondary);
+  letter-spacing: -0.01em;
+  margin: 0 0 14px 0;
+  max-width: 740px;
+}
+.sec-refs{ display: flex; gap: 6px; flex-wrap: wrap; }
+.ref{
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  background: rgba(255,255,255,.04);
+  border: 0.5px solid var(--sep);
+  border-radius: 6px;
+  color: var(--secondary);
+  letter-spacing: 0;
+}
+
+/* ═══ CARDS ═══ */
+.card{
+  background: var(--bg-elevated);
+  border: 0.5px solid var(--sep);
+  border-radius: var(--r-md);
+  padding: 22px 24px;
+  transition: border-color .2s, transform .2s;
+}
+.card.hover:hover{
+  border-color: var(--sep-strong);
+  transform: translateY(-1px);
+}
+.card-eyebrow{
+  font-size: 11px;
+  font-weight: 590;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--tertiary);
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.card-eyebrow .ic{
+  width: 14px; height: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.card-title{
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 8px 0;
+  color: var(--label);
+}
+.card-body{
+  font-size: 14px;
+  color: var(--secondary);
+  line-height: 1.55;
+}
+.card-body strong{ color: var(--label); font-weight: 590; }
+.card ul{
+  list-style: none;
+  padding: 0; margin: 0;
+}
+.card ul li{
+  font-size: 14px;
+  color: var(--secondary);
+  line-height: 1.55;
+  padding: 7px 0;
+  display: flex; gap: 10px;
+  border-bottom: 0.5px solid var(--sep);
+}
+.card ul li:last-child{ border-bottom: none; }
+.card ul li::before{
+  content: "";
+  width: 4px; height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin-top: 9px;
+  flex-shrink: 0;
+}
+.card ul li strong{ color: var(--label); font-weight: 590; }
+
+/* ═══ GRID ═══ */
+.grid{ display: grid; gap: 14px; }
+.grid-2{ grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid-3{ grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+/* ═══ NOTICE / ALERT ═══ */
+.notice{
+  display: flex; gap: 14px;
+  padding: 16px 20px;
+  border-radius: var(--r-md);
+  border-left: 3px solid var(--accent, var(--blue));
+  background: var(--accent-soft, var(--blue-soft));
+  margin-bottom: 18px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--label);
+}
+.notice-icon{
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  color: var(--accent, var(--blue));
+  margin-top: 1px;
+}
+.notice strong{ font-weight: 600; color: var(--label); }
+.notice.n-blue{   --accent: var(--blue);   --accent-soft: var(--blue-soft); }
+.notice.n-green{  --accent: var(--green);  --accent-soft: var(--green-soft); }
+.notice.n-orange{ --accent: var(--orange); --accent-soft: var(--orange-soft); }
+.notice.n-red{    --accent: var(--red);    --accent-soft: var(--red-soft); }
+.notice.n-gold{   --accent: var(--gold);   --accent-soft: var(--gold-soft); }
+.notice.n-purple{ --accent: var(--purple); --accent-soft: var(--purple-soft); }
+
+/* ═══ PILL TAG ═══ */
+.tag-row{ display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag{
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--bg-raised);
+  color: var(--secondary);
+  border: 0.5px solid var(--sep);
+  letter-spacing: -0.005em;
+}
+.tag.t-gold{   background: var(--gold-soft);   color: var(--gold);   border-color: rgba(245,193,78,.25); }
+.tag.t-blue{   background: var(--blue-soft);   color: var(--blue);   border-color: rgba(10,132,255,.25); }
+.tag.t-green{  background: var(--green-soft);  color: var(--green);  border-color: rgba(48,209,88,.25); }
+.tag.t-orange{ background: var(--orange-soft); color: var(--orange); border-color: rgba(255,159,10,.25); }
+.tag.t-red{    background: var(--red-soft);    color: var(--red);    border-color: rgba(255,69,58,.25); }
+
+/* ═══ ACTIVITY BLOCK (for Requisiti) ═══ */
+.act{
+  background: var(--bg-elevated);
+  border: 0.5px solid var(--sep);
+  border-radius: var(--r-md);
+  padding: 24px 26px;
+  margin-bottom: 14px;
+}
+.act-head{
+  display: flex; align-items: center; gap: 14px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 0.5px solid var(--sep);
+}
+.act-icon{
+  width: 38px; height: 38px;
+  background: var(--bg-raised);
+  border-radius: var(--r-sm);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+}
+.act-title{
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  flex: 1;
+}
+.act-ref{
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 11px;
+  color: var(--tertiary);
+  background: rgba(255,255,255,.04);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 0.5px solid var(--sep);
+}
+.act p{
+  font-size: 14px;
+  color: var(--secondary);
+  line-height: 1.6;
+  margin: 0 0 10px 0;
+}
+.act p strong{ color: var(--label); font-weight: 600; }
+.act p:last-of-type{ margin-bottom: 0; }
+
+/* ═══ TIMELINE ═══ */
+.timeline{ position: relative; padding-left: 28px; margin-bottom: 26px; }
+.timeline::before{
+  content: "";
+  position: absolute; left: 6px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  border-radius: 2px;
+}
+.tl-item{ position: relative; margin-bottom: 22px; }
+.tl-item:last-child{ margin-bottom: 0; }
+.tl-dot{
+  position: absolute;
+  left: -28px; top: 4px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--dot, var(--gold));
+  border: 3px solid var(--bg-base);
+  box-shadow: 0 0 0 1px var(--dot, var(--gold));
+}
+.tl-title{
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px 0;
+}
+.tl-desc{
+  font-size: 14px;
+  color: var(--secondary);
+  line-height: 1.55;
+  margin: 0 0 6px 0;
+}
+.tl-desc strong{ color: var(--label); font-weight: 590; }
+.tl-ref{
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 11px;
+  color: var(--tertiary);
+}
+
+/* ═══ SANZIONI TABLE ═══ */
+.table-wrap{
+  overflow-x: auto;
+  background: var(--bg-elevated);
+  border: 0.5px solid var(--sep);
+  border-radius: var(--r-md);
+  margin-bottom: 20px;
+}
+table.sanz{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  min-width: 720px;
+}
+table.sanz thead{
+  background: var(--bg-raised);
+}
+table.sanz th{
+  text-align: left;
+  padding: 13px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+  border-bottom: 0.5px solid var(--sep);
+}
+table.sanz td{
+  padding: 14px 16px;
+  border-bottom: 0.5px solid var(--sep);
+  color: var(--secondary);
+  line-height: 1.45;
+  vertical-align: top;
+}
+table.sanz tbody tr:last-child td{ border-bottom: none; }
+table.sanz td strong{ color: var(--label); font-weight: 590; }
+table.sanz td.num{
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 13px;
+  color: var(--label);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.sanz-badge{
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.sanz-badge.b-gold{   background: var(--gold-soft);   color: var(--gold); }
+.sanz-badge.b-orange{ background: var(--orange-soft); color: var(--orange); }
+.sanz-badge.b-green{  background: var(--green-soft);  color: var(--green); }
+.sanz-badge.b-red{    background: var(--red-soft);    color: var(--red); }
+
+/* ═══ RECIDIVA LADDER ═══ */
+.ladder{ display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.step{
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 18px;
+  background: var(--bg-elevated);
+  border: 0.5px solid var(--sep);
+  border-radius: var(--r-sm);
+}
+.step-num{
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--bg-raised);
+  color: var(--secondary);
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.step-body{ flex: 1; }
+.step-title{ font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; }
+.step-sub{ font-size: 12.5px; color: var(--secondary); margin-top: 2px; }
+.step-pill{
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+  background: var(--orange-soft);
+  color: var(--orange);
+}
+.step.final{ border-color: rgba(255,69,58,.3); }
+.step.final .step-num{ background: var(--red-soft); color: var(--red); }
+.step.final .step-title{ color: var(--red); }
+.step.final .step-pill{ background: var(--red-soft); color: var(--red); }
+
+/* ═══ PMR CALLOUT ═══ */
+.pmr{
+  display: flex; align-items: center; gap: 18px;
+  padding: 18px 22px;
+  background: var(--bg-elevated);
+  border: 0.5px solid var(--sep);
+  border-radius: var(--r-md);
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.pmr-label{
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+  flex-shrink: 0;
+}
+.pmr-formula{
+  font-size: 13.5px;
+  color: var(--secondary);
+  flex: 1;
+  min-width: 280px;
+  line-height: 1.55;
+}
+.pmr-formula strong{ color: var(--label); font-weight: 590; }
+.pmr-result{
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold);
+  background: var(--gold-soft);
+  border: 0.5px solid rgba(245,193,78,.25);
+  padding: 6px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+/* ═══ VERBALE GENERATOR ═══ */
+.vg-card{
+  background: var(--bg-elevated);
+  border: 0.5px solid var(--sep);
+  border-radius: var(--r-lg);
+  padding: 28px 30px;
+  margin-bottom: 20px;
+}
+.vg-banner{
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 12px 16px;
+  background: var(--green-soft);
+  border: 0.5px solid rgba(48,209,88,.22);
+  border-radius: var(--r-sm);
+  margin-bottom: 22px;
+  color: var(--green);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.vg-banner svg{ flex-shrink: 0; width: 16px; height: 16px; margin-top: 1px; }
+.vg-banner strong{ font-weight: 600; }
+.vg-label{
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+  margin-bottom: 7px;
+}
+.vg-select, .vg-input{
+  width: 100%;
+  background: var(--bg-raised);
+  border: 0.5px solid var(--sep);
+  border-radius: var(--r-sm);
+  color: var(--label);
+  font-family: inherit;
+  font-size: 14px;
+  padding: 11px 14px;
+  margin-bottom: 16px;
+  outline: none;
+  transition: border-color .15s, background .15s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.vg-select{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a1a1a6' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+.vg-select:focus, .vg-input:focus{
+  border-color: var(--gold);
+  background: var(--bg-higher);
+}
+.vg-fields{ display: none; }
+.vg-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width: 560px){ .vg-row{ grid-template-columns: 1fr; } }
+
+.vg-meta{
+  display: none;
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  background: var(--bg-raised);
+  border-radius: var(--r-sm);
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.vg-meta.is-active{ display: flex; }
+.vg-meta-item{ display: flex; flex-direction: column; gap: 3px; }
+.vg-meta-key{
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+}
+.vg-meta-val{
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--label);
+}
+
+.vg-btn{
+  width: 100%;
+  background: var(--gold);
+  color: #1a1300;
+  border: none;
+  border-radius: var(--r-sm);
+  padding: 13px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: transform .12s, background .15s;
+  margin-top: 6px;
+}
+.vg-btn:hover{ background: #ffd37a; }
+.vg-btn:active{ transform: scale(.985); }
+
+.vg-empty{
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--tertiary);
+  font-size: 13.5px;
+}
+.vg-empty svg{
+  width: 44px; height: 44px;
+  color: var(--quaternary);
+  margin: 0 auto 14px;
+  display: block;
+}
+
+.vg-output{ display: none; margin-top: 24px; }
+.vg-output-head{
+  padding: 14px 18px;
+  background: var(--green-soft);
+  border: 0.5px solid rgba(48,209,88,.22);
+  border-bottom: none;
+  border-radius: var(--r-sm) var(--r-sm) 0 0;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.vg-copy{
+  padding: 6px 14px;
+  background: var(--green);
+  color: #001a07;
+  border: none;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  cursor: pointer;
+  transition: transform .12s, background .15s;
+}
+.vg-copy:hover{ background: #5ae078; }
+.vg-copy:active{ transform: scale(.96); }
+.vg-copy.ok{ background: var(--green); }
+
+.vg-text{
+  background: var(--bg-base);
+  border: 0.5px solid var(--sep);
+  border-top: none;
+  border-radius: 0 0 var(--r-sm) var(--r-sm);
+  padding: 22px 24px;
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--label);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.vg-sanz{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+.vg-sanz-cell{
+  padding: 10px 14px;
+  background: var(--bg-raised);
+  border: 0.5px solid var(--sep);
+  border-radius: var(--r-sm);
+}
+.vg-sanz-k{
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+  margin-bottom: 4px;
+}
+.vg-sanz-v{
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* ═══ PRINT ═══ */
+@media print{
+  body{ background: white; color: black; font-size: 11pt; }
+  body::before, body::after{ display: none; }
+  .nav-wrap, .vg-card, .topbar .org-chip, .hero-meta{ display: none !important; }
+  .section{ display: block !important; page-break-after: always; }
+  .card, .act, .notice{ background: white; border: 1px solid #ccc; box-shadow: none; }
+  .sec-title, .card-title, .hero-title{ color: black; }
+}
+
+/* ═══ TABLET (≤ 860px) ═══ */
+@media(max-width: 860px){
+  .topbar{ padding: 44px 24px 32px; }
+  main{ padding: 26px 24px 80px; }
+  .sec-title{ letter-spacing: -0.025em; }
+  .act-head{ gap: 12px; }
+  .pmr{ padding: 16px 18px; gap: 14px; }
+}
+
+/* ═══ PHONE (≤ 640px) ═══ */
+@media(max-width: 640px){
+  /* Layout globale */
+  .topbar{ padding: 34px 18px 26px; }
+  main{ padding: 20px 16px 72px; }
+  .section{ scroll-margin-top: 72px; }
+
+  /* Hero */
+  .org-chip{
+    font-size: 10.5px;
+    padding: 6px 12px;
+    letter-spacing: 0.02em;
+  }
+  .hero-title{
+    font-size: clamp(28px, 8vw, 34px);
+    letter-spacing: -0.03em;
+    line-height: 1.06;
+  }
+  .hero-sub{
+    font-size: 15px;
+    max-width: 100%;
+  }
+  .hero-meta{ gap: 8px; margin-top: 20px; }
+  .meta-chip{
+    font-size: 11.5px;
+    padding: 6px 12px;
+    gap: 6px;
+  }
+  .meta-chip svg{ width: 12px; height: 12px; }
+
+  /* Navigation pill — horizontal scroll ottimizzata */
+  .nav-wrap{
+    padding: 8px 10px;
+    border-radius: 12px;
+    margin: 0 6px;
+  }
+  .nav-pill{ gap: 2px; padding: 0 4px; scroll-padding: 8px; }
+  .nav-item{
+    padding: 10px 14px;
+    font-size: 13px;
+    min-height: 40px;
+  }
+  .nav-item .ic{ width: 15px; height: 15px; }
+
+  /* Section titles */
+  .sec-title{
+    font-size: clamp(24px, 6.5vw, 30px);
+    line-height: 1.1;
+  }
+  .sec-desc{ font-size: 14.5px; }
+  .sec-refs{ margin-top: 10px; }
+
+  /* Cards */
+  .card{ padding: 18px 18px; border-radius: var(--r-md); }
+  .card-title{ font-size: 16px; }
+  .card-body{ font-size: 14px; line-height: 1.55; }
+  .grid{ gap: 12px; }
+  .grid-2, .grid-3{ grid-template-columns: 1fr; }
+
+  /* Notice blocks */
+  .notice{ padding: 16px 18px; gap: 10px; }
+  .notice-body{ font-size: 13.5px; line-height: 1.5; }
+  .notice-title{ font-size: 13px; }
+
+  /* Act blocks (requisiti / art. 27-28-29) */
+  .act{ padding: 20px 18px; }
+  .act-head{ flex-wrap: wrap; gap: 10px; }
+  .act-title{ font-size: 17px; letter-spacing: -0.02em; }
+  .act-sub{ font-size: 12.5px; }
+  .act ul, .act ol{ padding-left: 20px; }
+  .act li{ font-size: 14px; line-height: 1.55; }
+
+  /* Timeline avvio iter */
+  .timeline{ padding-left: 22px; }
+  .t-step{ padding-bottom: 18px; }
+  .t-num{ left: -22px; width: 24px; height: 24px; font-size: 11.5px; }
+  .t-title{ font-size: 15px; }
+  .t-body{ font-size: 13.5px; }
+
+  /* Sanctions table — overflow scroll con hint visivo */
+  .table-wrap{
+    margin-left: -16px;
+    margin-right: -16px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  table.sanz{ font-size: 12.5px; min-width: 640px; }
+  table.sanz th{ padding: 11px 12px; font-size: 10px; }
+  table.sanz td{ padding: 12px 12px; }
+  table.sanz td.num{ font-size: 12px; }
+  .sanz-badge{ font-size: 11px; padding: 2px 8px; }
+
+  /* PMR callout */
+  .pmr{
+    padding: 14px 16px;
+    gap: 10px 14px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pmr-label{ font-size: 10px; }
+  .pmr-val{ font-size: 15px; }
+
+  /* Ladder recidiva — step pill va sotto al titolo */
+  .step{
+    flex-wrap: wrap;
+    padding: 14px 16px;
+    gap: 12px;
+    row-gap: 8px;
+  }
+  .step-body{ flex: 1 1 100%; min-width: 0; }
+  .step-num{ width: 26px; height: 26px; font-size: 12.5px; }
+  .step-title{ font-size: 14px; }
+  .step-sub{ font-size: 12px; }
+  .step-pill{
+    font-size: 11.5px;
+    padding: 5px 11px;
+    margin-left: calc(26px + 16px);
+  }
+
+  /* Generatore Verbale */
+  .vg-card{ padding: 22px 18px; border-radius: var(--r-md); }
+  .vg-head{ margin-bottom: 18px; }
+  .vg-title{ font-size: 19px; }
+  .vg-desc{ font-size: 13.5px; }
+
+  /* Form inputs: min 16px per evitare auto-zoom iOS */
+  .vg-select{
+    font-size: 16px;
+    padding: 13px 16px;
+    min-height: 48px;
+  }
+  .vg-field label{ font-size: 11px; }
+  .vg-field input, .vg-field textarea, .vg-field select{
+    font-size: 16px;
+    padding: 11px 13px;
+    min-height: 44px;
+  }
+  .vg-field textarea{ min-height: 90px; }
+
+  .vg-meta{ padding: 12px 14px; gap: 14px; }
+  .vg-meta.is-active{ flex-direction: column; align-items: stretch; }
+  .vg-meta-key{ font-size: 9.5px; }
+  .vg-meta-val{ font-size: 12.5px; }
+
+  .vg-btn{
+    padding: 15px;
+    font-size: 15px;
+    min-height: 48px;
+    border-radius: var(--r-md);
+  }
+
+  .vg-output-head{
+    padding: 12px 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 11px;
+  }
+  .vg-copy{
+    padding: 7px 16px;
+    min-height: 34px;
+    font-size: 12.5px;
+  }
+  .vg-text{
+    padding: 18px 16px;
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+
+  .vg-sanz{ grid-template-columns: 1fr 1fr; gap: 6px; }
+  .vg-sanz-cell{ padding: 9px 12px; }
+  .vg-sanz-k{ font-size: 9.5px; }
+  .vg-sanz-v{ font-size: 12.5px; }
+
+  .vg-empty{ padding: 36px 16px; font-size: 13.5px; }
+
+  /* Tag row */
+  .tag-row{ gap: 5px; }
+}
+
+/* ═══ SMALL PHONE (≤ 380px) — iPhone SE / mini ═══ */
+@media(max-width: 380px){
+  .topbar{ padding: 28px 14px 22px; }
+  main{ padding: 18px 12px 64px; }
+
+  .hero-title{ font-size: 26px; line-height: 1.08; }
+  .hero-sub{ font-size: 14px; }
+  .meta-chip{ font-size: 11px; padding: 5px 10px; }
+
+  .nav-wrap{ margin: 0 2px; padding: 6px 8px; }
+  .nav-item{ padding: 9px 12px; font-size: 12.5px; }
+
+  .sec-title{ font-size: 22px; }
+  .sec-desc{ font-size: 13.5px; }
+
+  .card{ padding: 16px 15px; }
+  .card-title{ font-size: 15px; }
+  .card-body{ font-size: 13.5px; }
+
+  .act{ padding: 18px 15px; }
+  .act-title{ font-size: 16px; }
+
+  .notice{ padding: 14px 15px; }
+
+  .vg-card{ padding: 18px 14px; }
+  .vg-sanz{ grid-template-columns: 1fr; }
+  .vg-text{ font-size: 12px; padding: 16px 14px; }
+
+  .step{ padding: 12px 14px; }
+  .step-pill{ margin-left: 0; align-self: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<div class="topbar">
+  <div class="org-chip">
+    <span class="dot"></span>
+    Polizia Municipale · U.O. San Lorenzo · Ufficio Polizia Amministrativa · A.C. FERRARA
+  </div>
+  <h1 class="hero-title">
+    Prontuario operativo.<br>
+    <em>Acconciatori, estetisti,<br>tatuaggio & piercing.</em>
+  </h1>
+  <p class="hero-sub">
+    Guida di riferimento per l'accertamento amministrativo ai sensi del Regolamento comunale
+    approvato con D.C.C. n. 18/2018 e modificato con D.C.C. n. 6/2021, con generatore
+    automatico del corpo descrittivo del verbale.
+  </p>
+  <div class="hero-meta">
+    <span class="meta-chip">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      D.C.C. 18/2018 · mod. 6/2021
+    </span>
+    <span class="meta-chip">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Revisione 4.0 · 2026
+    </span>
+    <span class="meta-chip">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      L. 174/2005 · L. 1/1990 · D.Lgs. 267/2000
+    </span>
+    <span class="meta-chip">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      Uso interno · distribuzione colleghi
+    </span>
+  </div>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<div class="nav-wrap">
+  <div class="nav-pill">
+    <button class="nav-item active" onclick="showSec('panoramica', this)">
+      <span class="ic">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      </span>
+      Panoramica
+    </button>
+    <button class="nav-item" onclick="showSec('requisiti', this)">
+      <span class="ic">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H5a2 2 0 00-2 2v11a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V4a2 2 0 012-2h2a2 2 0 012 2v2m-6 0h6"/></svg>
+      </span>
+      Requisiti
+    </button>
+    <button class="nav-item" onclick="showSec('avvio', this)">
+      <span class="ic">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+      </span>
+      Iter & Avvio
+    </button>
+    <button class="nav-item" onclick="showSec('locali', this)">
+      <span class="ic">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+      </span>
+      Locali & Igiene
+    </button>
+    <button class="nav-item" onclick="showSec('affido', this)">
+      <span class="ic">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </span>
+      Affido Poltrona
+    </button>
+    <button class="nav-item" onclick="showSec('tatuaggio', this)">
+      <span class="ic">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+      </span>
+      Tatuaggio & Piercing
+    </button>
+    <button class="nav-item" onclick="showSec('sanzioni', this)">
+      <span class="ic">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </span>
+      Sanzioni
+    </button>
+    <button class="nav-item" onclick="showSec('verbale', this)">
+      <span class="ic">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+      </span>
+      Generatore Verbale
+    </button>
+  </div>
+</div>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════════════
+     PANORAMICA
+═══════════════════════════════════════════════════════ -->
+<section class="section active" id="s-panoramica">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Sezione 01 — Inquadramento generale</div>
+    <h2 class="sec-title">Panoramica del Regolamento</h2>
+    <p class="sec-desc">Struttura, finalità, ambito di applicazione e definizioni — il quadro d'insieme per orientare ogni controllo sul territorio.</p>
+    <div class="sec-refs">
+      <span class="ref">Art. 1 Finalità</span>
+      <span class="ref">Art. 2 Oggetto</span>
+      <span class="ref">Art. 3 Ambito</span>
+      <span class="ref">Art. 4 Definizioni</span>
+      <span class="ref">Art. 37 Vigilanza</span>
+    </div>
+  </div>
+
+  <div class="notice n-blue">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <div>Il Regolamento si applica a <strong>tutte le forme di esercizio</strong> delle attività indicate — anche a titolo gratuito — su tutto il territorio del Comune di Napoli, ovunque e da chiunque siano esercitate (Art. 3).</div>
+  </div>
+
+  <div class="grid grid-2">
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">✂️</span>
+        Attività disciplinate
+      </div>
+      <ul>
+        <li>Acconciatore — <strong>L. 17.08.2005 n. 174</strong></li>
+        <li>Estetista — <strong>L. 04.01.1990 n. 1</strong></li>
+        <li>Tatuaggio — <strong>Del. G.R.C. 157/2010</strong></li>
+        <li>Piercing — <strong>Del. G.R.C. 157/2010</strong></li>
+      </ul>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">🏛️</span>
+        Forme di impresa ammesse
+      </div>
+      <ul>
+        <li>Individuale <strong>artigiana</strong> (L. 443/1985)</li>
+        <li>Individuale <strong>non artigiana</strong> con RT</li>
+        <li>Societaria <strong>artigiana</strong></li>
+        <li>Societaria <strong>non artigiana</strong></li>
+      </ul>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">📍</span>
+        Luoghi di esercizio (Art. 13)
+      </div>
+      <ul>
+        <li>Locali aperti al pubblico</li>
+        <li>Alberghi, palestre, ospedali, caserme, istituti penitenziari</li>
+        <li>Centri commerciali, aeroporti, porti, stazioni</li>
+        <li>Domicilio esercente o del cliente (con targa esterna)</li>
+      </ul>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">🚫</span>
+        Divieti generali
+      </div>
+      <ul>
+        <li>Esercizio <strong>itinerante</strong> o di posteggio</li>
+        <li><strong>Uso promiscuo</strong> attrezzature nell'affido</li>
+        <li>Tatuaggio / piercing su <strong>minori di 14 anni</strong></li>
+        <li>Esercizio senza iscrizione Registro Imprese</li>
+      </ul>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">📄</span>
+        Titolo abilitativo
+      </div>
+      <ul>
+        <li><strong>SCIA</strong> telematica al SUAP (Art. 19 L. 241/1990)</li>
+        <li><strong>SCIA condizionata</strong> se consumo idrico &gt; 1 mc/g (con AUA)</li>
+        <li><strong>Comunicazione congiunta</strong> per affido poltrona/cabina</li>
+        <li>Inoltro esclusivamente per via telematica</li>
+      </ul>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">🛡️</span>
+        Organi di controllo (Art. 37)
+      </div>
+      <ul>
+        <li><strong>Polizia Locale</strong></li>
+        <li>Altri organi di Polizia</li>
+        <li><strong>A.S.L. Napoli 1</strong> — Distretto Sanitario competente</li>
+        <li>SUAP / Servizio comunale competente</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="notice n-orange">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    <div><strong>Fiere e manifestazioni (Art. 13 c. 4).</strong> Le attività sono ammesse esclusivamente a <strong>titolo dimostrativo</strong>, previa comunicazione al Comune, con preventiva verifica delle condizioni igienico-sanitarie da parte degli Uffici A.S.L. competenti.</div>
+  </div>
+
+  <div class="notice n-gold">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+    <div><strong>Adeguamento automatico (Art. 36).</strong> L'entrata in vigore di nuove direttive UE, leggi statali o regionali comporta l'adeguamento automatico del Regolamento, formalizzato con delibera di presa d'atto della Giunta comunale.</div>
+  </div>
+
+  <div class="notice n-purple">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+    <div><strong>Disposizione transitoria (Art. 34 c. 1).</strong> I soggetti già autorizzati all'esercizio delle attività di acconciatore e/o estetista alla data di entrata in vigore del Regolamento devono procedere all'<strong>adeguamento dei locali, delle attrezzature e delle suppellettili entro 365 giorni</strong>, salvo impedimenti di carattere tecnico-normativo.</div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     REQUISITI
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="s-requisiti">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Sezione 02 — Requisiti soggettivi</div>
+    <h2 class="sec-title">Chi può esercitare</h2>
+    <p class="sec-desc">Titoli professionali, Responsabile Tecnico, requisiti antimafia e obblighi di iscrizione — per ciascuna delle attività disciplinate.</p>
+    <div class="sec-refs">
+      <span class="ref">Art. 5 Acconciatore</span>
+      <span class="ref">Art. 6 Estetista</span>
+      <span class="ref">Art. 6bis Tatuaggio/Piercing</span>
+      <span class="ref">Art. 12 Forme esercizio</span>
+      <span class="ref">D.Lgs. 159/2011 Antimafia</span>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="act-head">
+      <div class="act-icon">✂️</div>
+      <div class="act-title">Acconciatore</div>
+      <div class="act-ref">Art. 5 · L. 174/2005</div>
+    </div>
+    <p><strong>Titolo.</strong> Abilitazione professionale ex art. 3 L. 17.08.2005 n. 174 e s.m.i.</p>
+    <p><strong>Chi deve possederla.</strong> Il titolare (impresa individuale) oppure almeno un socio o il Responsabile Tecnico (impresa societaria).</p>
+    <p><strong>Accertamento.</strong> Effettuato dal competente Servizio Comunale (Art. 5 c. 2).</p>
+    <p><strong>Requisiti antimafia.</strong> Assenza delle misure di prevenzione di cui al D.Lgs. 159/2011, in capo a titolare, Responsabile Tecnico e — per le società — a tutti i soggetti individuati dall'art. 85 del medesimo Decreto.</p>
+    <div class="tag-row">
+      <span class="tag t-gold">RT iscritto al REA contestualmente alla SCIA</span>
+      <span class="tag t-gold">RT garantisce presenza durante l'attività</span>
+      <span class="tag t-gold">RT in persona diversa per ogni sede</span>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="act-head">
+      <div class="act-icon">💅</div>
+      <div class="act-title">Estetista</div>
+      <div class="act-ref">Art. 6 · L. 1/1990</div>
+    </div>
+    <p><strong>Titolo.</strong> Qualificazione professionale ex art. 3 L. 04.01.1990 n. 1 e s.m.i.</p>
+    <p><strong>Attività incluse.</strong> Truccatore, visagista, massaggiatore facciale, depilatore, manicure e pedicure estetico (Art. 4).</p>
+    <p><strong>Esclusioni.</strong> Sono escluse le prestazioni dirette in linea specifica ed esclusiva a finalità terapeutica; nessuna prestazione medico-curativa-sanitaria.</p>
+    <p><strong>RT, antimafia, iscrizione REA.</strong> Stessa disciplina dell'acconciatore (Art. 6 c. 4).</p>
+    <div class="tag-row">
+      <span class="tag t-blue">Apparecchi elettromeccanici ex All. L. 1/1990 ammessi</span>
+      <span class="tag t-blue">Prodotti cosmetici come da normativa UE</span>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="act-head">
+      <div class="act-icon">🖊️</div>
+      <div class="act-title">Tatuaggio / Piercing</div>
+      <div class="act-ref">Art. 6bis · Del. G.R.C. 157/2010</div>
+    </div>
+    <p><strong>Titoli richiesti — entrambi obbligatori:</strong></p>
+    <p>① Attestato di <strong>qualifica alla professione</strong><br>② Attestato di <strong>specifico corso formativo rilasciato dalle AA.SS.LL.</strong> ex Del. G.R.C. n. 157 del 25.02.2010</p>
+    <p><strong>Accertamento.</strong> Effettuato dal competente Servizio Comunale (Art. 6bis c. 2).</p>
+    <p><strong>Requisiti antimafia.</strong> Identica disciplina prevista per acconciatore ed estetista.</p>
+    <div class="tag-row">
+      <span class="tag t-orange">Entrambi i titoli in capo al titolare o al RT</span>
+      <span class="tag t-orange">RT iscritto al REA con SCIA</span>
+      <span class="tag t-orange">Presenza RT garantita durante l'attività</span>
+    </div>
+  </div>
+
+  <div class="notice n-red">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    <div><strong>Divieto assoluto (Art. 12 c. 4).</strong> Non è consentito l'esercizio a soggetti <strong>non iscritti nel Registro delle Imprese</strong>. Il Responsabile Tecnico deve essere designato <strong>in persona diversa per ogni sede operativa</strong>: non è ammesso un unico RT per più sedi dell'impresa.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-eyebrow">
+      <span class="ic">👤</span>
+      Responsabile Tecnico — sintesi obblighi
+    </div>
+    <ul>
+      <li>È in possesso della qualificazione o abilitazione professionale per l'esercizio dell'attività</li>
+      <li>Designato nella persona del <strong>titolare, di un socio partecipante al lavoro, di un familiare coadiuvante o di un dipendente</strong> dell'impresa</li>
+      <li>Iscritto nel <strong>REA</strong> contestualmente alla trasmissione della SCIA</li>
+      <li>Garantisce la propria <strong>presenza durante lo svolgimento dell'attività</strong></li>
+      <li>Designato in <strong>persona diversa per ogni sede</strong> dell'impresa</li>
+      <li>Nell'impresa individuale, in assenza di designazione diversa, <strong>coincide con il titolare</strong></li>
+    </ul>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     AVVIO / ITER
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="s-avvio">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Sezione 03 — Iter amministrativo</div>
+    <h2 class="sec-title">Avvio, subingresso e cessazione</h2>
+    <p class="sec-desc">SCIA ordinaria e condizionata, subingresso inter vivos e mortis causa, sospensione, decadenza.</p>
+    <div class="sec-refs">
+      <span class="ref">Art. 7–8 SCIA</span>
+      <span class="ref">Art. 9–11 Subingresso</span>
+      <span class="ref">Art. 14 Sospensione</span>
+      <span class="ref">Art. 15 Cessazione</span>
+      <span class="ref">Art. 33 Decadenza</span>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot" style="--dot:var(--teal)"></div>
+      <h4 class="tl-title">1. Presentazione SCIA al SUAP</h4>
+      <p class="tl-desc">Obbligatoria per: <strong>apertura</strong>, <strong>trasferimento di sede</strong>, <strong>subingresso</strong>. Modalità esclusivamente telematica, modello specifico per tipologia di attività.</p>
+      <div class="tl-ref">Art. 7 · Art. 8 c. 1</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="--dot:var(--green)"></div>
+      <h4 class="tl-title">2. Inizio attività — regime ordinario</h4>
+      <p class="tl-desc">L'attività può iniziare <strong>dalla data di inoltro della SCIA</strong>, senza attesa di alcun rilascio o approvazione.</p>
+      <div class="tl-ref">Art. 8 c. 2</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="--dot:var(--orange)"></div>
+      <h4 class="tl-title">Eccezione — SCIA condizionata (acconciatori)</h4>
+      <p class="tl-desc">Se il consumo idrico giornaliero <strong>supera 1 mc</strong> al momento di massima attività → SCIA condizionata con istanza di <strong>A.U.A. (Autorizzazione Unica Ambientale)</strong>. L'attività <strong>non può essere iniziata fino al rilascio dell'AUA</strong>.</p>
+      <div class="tl-ref">Art. 8 c. 3–4</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="--dot:var(--gold)"></div>
+      <h4 class="tl-title">3. Obblighi successivi all'avvio</h4>
+      <p class="tl-desc">Ogni variazione soggettiva e/o oggettiva va comunicata al SUAP. Cartello orario, tabella tariffe e copia SCIA devono essere esposti o custoditi nel locale.</p>
+      <div class="tl-ref">Art. 16 · Art. 17</div>
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+
+    <div class="card">
+      <div class="card-eyebrow">
+        <span class="ic">🔄</span>
+        Subingresso inter vivos — Art. 10
+      </div>
+      <ul>
+        <li>Subentrante <strong>con requisiti</strong> → comunicazione SUAP e continuità senza interruzioni</li>
+        <li>Subentrante <strong>senza requisiti</strong> → designare un Responsabile Tecnico prima dell'avvio</li>
+        <li>RT non designato → <strong>decadenza se non regolarizza entro 1 anno</strong></li>
+        <li>Requisiti poi conseguiti → comunicare <strong>entro 6 mesi</strong> dal conseguimento</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-eyebrow">
+        <span class="ic">⚱️</span>
+        Subingresso mortis causa — Art. 11
+      </div>
+      <ul>
+        <li>Eredi <strong>con requisiti</strong> → SCIA e continuità immediata</li>
+        <li>Eredi <strong>senza requisiti</strong> → RT obbligatorio e SCIA</li>
+        <li>Eredi iscritti al Registro Imprese ex L. 443/85 → attività limitata alla durata dell'iscrizione</li>
+        <li>Eredi <strong>minorenni</strong> → autorizzazione del Giudice Tutelare in ogni caso</li>
+        <li>Scaduta l'iscrizione senza acquisizione dei requisiti → decadenza; facoltà di nuova SCIA</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-eyebrow">
+        <span class="ic">⏸️</span>
+        Sospensione volontaria — Art. 14
+      </div>
+      <ul>
+        <li><strong>30–90 giorni</strong> → semplice <strong>comunicazione</strong> al SUAP (nessuna autorizzazione)</li>
+        <li><strong>60–365 giorni</strong> → <strong>autorizzazione</strong> del Dirigente comunale per comprovati motivi</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-eyebrow">
+        <span class="ic">🛑</span>
+        Cessazione — Art. 15
+      </div>
+      <ul>
+        <li>Comunicazione al SUAP con indicazione della data di cessazione</li>
+        <li>In caso di morte del titolare: obbligo a carico degli eredi, salvo quanto previsto dall'Art. 11</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="notice n-red">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <div><strong>Cause di decadenza (Art. 33).</strong> Mancata attivazione entro <strong>60 gg</strong> dalla SCIA · sospensione <strong>&gt; 365 gg</strong> non autorizzata · cancellazione dal Registro Imprese · morte del titolare (salvo Art. 11) · perdita dei requisiti soggettivi o oggettivi · false dichiarazioni (Art. 76 D.P.R. 445/2000) · <strong>terza recidiva in un anno</strong>.<br><br>
+    <strong>Iter.</strong> Avvio procedimento ex Art. 7 L. 241/1990 → 30 giorni per le osservazioni → provvedimento motivato ex Art. 3 L. 241/1990 → notifica a mezzo raccomandata o messo comunale.</div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     LOCALI & IGIENE
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="s-locali">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Sezione 04 — Requisiti strutturali</div>
+    <h2 class="sec-title">Locali, attrezzature e norme igienico-sanitarie</h2>
+    <p class="sec-desc">Competenza ASL Napoli 1 — Distretto Sanitario competente per territorio. Strutture, attrezzature, procedimenti di lavorazione e obblighi del titolare.</p>
+    <div class="sec-refs">
+      <span class="ref">Art. 25 Competenza</span>
+      <span class="ref">Art. 26 Locali</span>
+      <span class="ref">Art. 27 Attrezzature</span>
+      <span class="ref">Art. 28 Lavorazioni</span>
+      <span class="ref">Art. 29 Obblighi titolare</span>
+      <span class="ref">O.S. 510/2003</span>
+    </div>
+  </div>
+
+  <!-- LOCALI -->
+  <div class="grid grid-2">
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">📐</span>
+        Superfici minime (Art. 26 a)
+      </div>
+      <div class="card-body">
+        <p><strong>Barbiere / Parrucchiere.</strong> Non inferiore a <strong>10 m²</strong> per un solo posto di lavoro, aumentata di <strong>4 m²</strong> per ogni ulteriore poltrona attrezzata davanti allo specchio.</p>
+        <p>Distanza tra le postazioni, misurata al centro dell'interasse tra le poltrone: <strong>≥ 1,50 m</strong>.</p>
+        <p><strong>Estetista.</strong> Superficie minima <strong>14 m²</strong> + dotazione di apposita <strong>sala d'attesa</strong>.</p>
+        <p style="color:var(--tertiary);font-size:12.5px;margin-top:10px">Superficie minima = ambiente di lavoro, esclusi locali accessori (ingresso, sala d'attesa, servizi igienici, ripostiglio).</p>
+      </div>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">📏</span>
+        Altezza e finiture (Art. 26 b–c)
+      </div>
+      <div class="card-body">
+        <p>Altezza dei locali <strong>≥ 3 m</strong>, salvo deroghe previste dalla normativa vigente.</p>
+        <p>Pavimenti sia dei locali di lavoro che accessori: uniformi, di materiale <strong>facilmente lavabile e sanificabile</strong>.</p>
+        <p>Pareti: rivestimento lavabile e sanificabile fino a <strong>1,80 m</strong>.</p>
+      </div>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">💡</span>
+        Aerazione e illuminazione (Art. 26 d)
+      </div>
+      <div class="card-body">
+        <p>Superficie aeroilluminante <strong>≥ 1/8 della superficie del pavimento</strong>.</p>
+        <p>Aerazione artificiale ammessa solo con impianti i cui <strong>progetti siano stati preventivamente valutati dall'A.S.L.</strong></p>
+        <p>Illuminazione artificiale integrativa in caso di naturale insufficiente.</p>
+      </div>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">🚰</span>
+        Lavandini (Art. 26 e)
+      </div>
+      <div class="card-body">
+        <p>Fissi, ad acqua corrente <strong>potabile, calda e fredda</strong>.</p>
+        <p>Numero adeguato all'attività svolta. <strong>Per i barbieri: uno per posto di lavoro</strong>.</p>
+        <p>Dotati di adeguato sistema di smaltimento delle acque di rifiuto, nel rispetto della normativa vigente.</p>
+      </div>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">⚗️</span>
+        Sostanze tossiche (Art. 26 g)
+      </div>
+      <div class="card-body">
+        <p>I locali nei quali si usano <strong>sostanze tossiche, volatili e infiammabili</strong> devono essere dotati di <strong>retrobottega o locale separato</strong>, adeguatamente aerato, per il rapido ricambio d'aria e la conservazione delle sostanze in appositi contenitori.</p>
+        <p>Nei locali di lavoro <strong>non si tengono quantità superiori a quelle strettamente necessarie al servizio in corso</strong>.</p>
+      </div>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">🚻</span>
+        Servizi igienici (Art. 26 h)
+      </div>
+      <div class="card-body">
+        <p>Interni, con aerazione diretta o indiretta, dotati di antibagno. Non sono considerati quelli esterni ai locali.</p>
+        <p><strong>Esercizi misti uomo/donna:</strong> servizi distinti per sesso.</p>
+        <p>Pavimento uniforme e lavabile; pareti piastrellate fino a <strong>1,50 m</strong>; lavabo con rubinetteria <strong>non manuale</strong>, asciugamani elettrico o monouso, erogatore di sapone liquido.</p>
+      </div>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">🧥</span>
+        Spogliatoio e locali interrati (Art. 26 i–l)
+      </div>
+      <div class="card-body">
+        <p>Locali idonei adibiti a <strong>spogliatoio per il personale con armadietti individuali</strong>.</p>
+        <p>Locali <strong>interrati e seminterrati</strong>: richiesta preventiva di deroga all'A.S.L. secondo la normativa vigente.</p>
+        <p>Esercizio al domicilio: locali <strong>assolutamente indipendenti</strong> dall'abitazione, con ingresso separato e servizi igienici propri.</p>
+      </div>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">⚡</span>
+        Impianti (Art. 26 f)
+      </div>
+      <div class="card-body">
+        <p>Impianti elettrici e termoidraulici eseguiti nel rispetto della normativa vigente (D.M. 37/2008).</p>
+        <p>Documentazione di conformità da conservare e da esibire in caso di controllo.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ATTREZZATURE Art. 27 -->
+  <div class="act" style="margin-top:18px">
+    <div class="act-head">
+      <div class="act-icon">🧰</div>
+      <div class="act-title">Requisiti delle attrezzature e dotazioni tecniche</div>
+      <div class="act-ref">Art. 27</div>
+    </div>
+    <p><strong>Mobilio e arredamento.</strong> Devono permettere completa pulizia giornaliera e periodica disinfezione. Le poltrone devono essere di materiale lavabile; gli eventuali poggiatesta protetti da idonee coperture <strong>da cambiarsi per ogni persona</strong>.</p>
+    <p><strong>Armadio biancheria pulita.</strong> Almeno uno a destinazione esclusiva con sportelli. Contenitori chiudibili, lavabili e disinfettabili per la biancheria usata; recipienti muniti di <strong>coperchio con apertura a pedale</strong> per i rifiuti.</p>
+    <p><strong>Biancheria.</strong> <strong>Monouso</strong> oppure — in alternativa — appositamente sanificata, <strong>singolarmente imbustata</strong>, utilizzata una sola volta e depositata dopo l'uso in contenitori dedicati.</p>
+    <p><strong>Armadietto pronto soccorso.</strong> Obbligatorio in ogni esercizio, contenente il materiale prescritto.</p>
+    <p><strong>Divieto assoluto</strong> di detenere nell'esercizio attrezzature non pertinenti all'attività autorizzata.</p>
+  </div>
+
+  <!-- LAVORAZIONI Art. 28 -->
+  <div class="act">
+    <div class="act-head">
+      <div class="act-icon">🧪</div>
+      <div class="act-title">Procedimenti per la lavorazione</div>
+      <div class="act-ref">Art. 28</div>
+    </div>
+    <p><strong>Prodotti utilizzati.</strong> Regolarmente in commercio, da tenere negli <strong>originali contenitori con etichetta</strong> o altro marchio della casa produttrice. Osservanza delle prescrizioni della casa produttrice e delle autorità sanitarie.</p>
+    <p><strong>Tinture, fissativi e preparati con esalazioni nocive</strong> → manipolazione con <strong>D.I.P. (guanti monouso e mascherine)</strong> obbligatoria.</p>
+    <p><strong>Aerazione post-uso.</strong> Le lavorazioni con prodotti dalle esalazioni nocive o fastidiose devono essere <strong>sempre seguite da rapide ed abbondanti aerazioni dell'ambiente</strong>.</p>
+    <p><strong>Fiamme libere.</strong> Durante le manipolazioni e applicazioni di sostanze o liquidi infiammabili è <strong>vietato tenere accese fiamme libere</strong> nell'esercizio.</p>
+  </div>
+
+  <!-- OBBLIGHI TITOLARE Art. 29 -->
+  <div class="act">
+    <div class="act-head">
+      <div class="act-icon">👔</div>
+      <div class="act-title">Obblighi del titolare</div>
+      <div class="act-ref">Art. 29 · O.S. 510/2003</div>
+    </div>
+    <p><strong>Idoneità sanitaria del personale.</strong> Il titolare tiene in custodia ed esibisce a ogni richiesta dell'autorità di vigilanza la <strong>certificazione di idoneità sanitaria del personale</strong>, attestante l'immunità da malattie infettive e diffusive.</p>
+    <p><strong>Malattie infettive.</strong> Il titolare o personale affetto da qualsiasi forma di malattia infettiva, anche sospetta, è tenuto ad <strong>allontanarsi immediatamente dall'esercizio</strong> e denunciarne tempestivamente alle autorità sanitarie.</p>
+    <p><strong>Lame monouso.</strong> Rasoi e strumenti taglienti devono avere <strong>lame monouso da sconfezionare in presenza del cliente</strong> prima del taglio e <strong>non riutilizzabili</strong>. Smaltimento in appositi <strong>contenitori rigidi</strong> ai sensi della normativa vigente.</p>
+    <p><strong>Sanificazione strumenti.</strong> Utensili e oggetti a contatto diretto con la cute del cliente (forbici, strumenti metallici) → disinfezione in apposite apparecchiature a mezzo di calore o con metodi chimici, secondo la procedura stabilita con <strong>Ordinanza Sindacale n. 510 del 17.07.2003</strong>.</p>
+    <p><strong>Pettini, spazzole e attrezzature.</strong> Accuratamente <strong>lavati e disinfettati dopo ogni servizio</strong>; sempre tenuti in perfetta pulizia.</p>
+    <p><strong>Clienti con malattie contagiose o lesioni cutanee infiammatorie.</strong> Utilizzo di D.I.P., biancheria esclusivamente monouso, sanificazione delle attrezzature non monouso. Per le attività al letto di ammalati con malattie infettive è necessario il <strong>preventivo parere della competente autorità sanitaria</strong>.</p>
+  </div>
+
+  <div class="notice n-teal" style="--accent:var(--teal);--accent-soft:var(--teal-soft)">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+    <div><strong>Manicure e pedicure estetico.</strong> La parte da trattare deve essere abbondantemente lavata con acqua e sapone e accuratamente disinfettata con prodotti idonei. <strong>Dopo la rasatura della barba</strong>: il cliente deve poter lavarsi con abbondante acqua corrente; la superficie rasata può essere spruzzata con soluzione alcolica al 50% o altri idonei disinfettanti.</div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     AFFIDO POLTRONA / CABINA
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="s-affido">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Sezione 05 — Affido di poltrona / cabina</div>
+    <h2 class="sec-title">Affido poltrona & cabina</h2>
+    <p class="sec-desc">Modello di gestione aziendale previsto dal Titolo IV del Regolamento per le attività di acconciatore ed estetista, riconducibile al contratto di gestione e godimento della cosa produttiva (art. 1615 c.c.).</p>
+    <div class="sec-refs">
+      <span class="ref">Art. 18 Generalità</span>
+      <span class="ref">Art. 19 Presupposti</span>
+      <span class="ref">Art. 20 Avvio</span>
+      <span class="ref">Art. 21 Limiti</span>
+      <span class="ref">Art. 22 Orari</span>
+      <span class="ref">Art. 23 Prezzi</span>
+      <span class="ref">Art. 24 Sanzioni</span>
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">👔</span>
+        Soggetto affidante (Art. 19 c. 2)
+      </div>
+      <ul>
+        <li>Imprenditore <strong>titolare dell'esercizio</strong> di acconciatore e/o estetista legittimamente in attività</li>
+        <li><strong>Non può essere affidante</strong> chi ha effettuato licenziamenti <strong>negli ultimi 24 mesi</strong></li>
+        <li>Rimane <strong>titolare e responsabile della conduzione</strong> dell'esercizio</li>
+        <li>Presente personalmente o tramite direttore tecnico durante l'esercizio dell'affidatario</li>
+      </ul>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">✂️</span>
+        Soggetto affidatario (Art. 19 c. 3)
+      </div>
+      <ul>
+        <li>Imprenditore munito dei <strong>requisiti morali e professionali</strong> e di <strong>Partita IVA</strong></li>
+        <li>Esercita direttamente l'attività come <strong>impresa individuale senza collaboratori</strong></li>
+        <li><strong>Non può essere affidatario</strong> chi ha lavorato all'interno dello stesso esercizio <strong>negli ultimi 5 anni come dipendente</strong></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="card-eyebrow">
+      <span class="ic">📝</span>
+      Il contratto (Art. 19 c. 4)
+    </div>
+    <ul>
+      <li>Atto pubblico o scrittura privata con <strong>firma autenticata</strong></li>
+      <li><strong>Registrato</strong> all'Agenzia delle Entrate</li>
+      <li>Durata minima: <strong>1 anno</strong></li>
+      <li><strong>Planimetria</strong> allegata con le postazioni di lavoro oggetto dell'affido ad uso esclusivo dell'affidatario</li>
+      <li>Indicazione dell'attività che verrà esercitata su ogni postazione data in affido</li>
+      <li><strong>Rapporto economico</strong> tra le parti esplicitato</li>
+      <li>Facoltà di <strong>recesso anticipato</strong> e cause di <strong>risoluzione anticipata</strong></li>
+    </ul>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="card-eyebrow">
+      <span class="ic">🔢</span>
+      Limiti numerici poltrone / cabine (Art. 21)
+    </div>
+    <ul>
+      <li><strong>0–3 dipendenti</strong> → massimo <strong>1</strong> poltrona/cabina</li>
+      <li><strong>4–9 dipendenti</strong> → massimo <strong>2</strong> poltrone/cabine</li>
+      <li><strong>≥ 10 dipendenti</strong> → massimo <strong>3</strong> poltrone/cabine</li>
+      <li>Superamento dei limiti = attività <strong>abusiva</strong> per le unità eccedenti</li>
+    </ul>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:14px">
+
+    <div class="card">
+      <div class="card-eyebrow">
+        <span class="ic">🕐</span>
+        Orari (Art. 22)
+      </div>
+      <ul>
+        <li>L'affidatario rispetta gli <strong>orari e i giorni di chiusura dell'affidante</strong></li>
+        <li>Non può esercitare in <strong>assenza dell'affidante o del RT</strong> di questi</li>
+        <li>Impresa individuale affidante senza dipendenti → attività dell'affidatario in assenza del titolare consentita <strong>solo per giustificati motivi comprovati</strong></li>
+        <li>Facoltà dell'affidatario di esporre proprio <strong>cartello orario personalizzato</strong></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-eyebrow">
+        <span class="ic">💶</span>
+        Prezzi e fiscalità (Art. 23)
+      </div>
+      <ul>
+        <li>Affidatario espone <strong>proprio cartello prezzi</strong> anche se identici a quelli dell'affidante</li>
+        <li><strong>Scontrino fiscale / fattura separati</strong> per affidante e affidatario</li>
+        <li><strong>Divieto assoluto</strong> di uso promiscuo di strumenti e attrezzature</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="notice n-purple">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+    <div><strong>Ripartizione delle responsabilità igienico-sanitarie (Art. 20 c. 5).</strong> Affidante e affidatario rispondono <strong>ciascuno per la parte del locale relativa alla propria attività</strong>. <strong>Per le parti in comune risponde in toto l'affidante</strong>.</div>
+  </div>
+
+  <div class="notice n-red">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    <div><strong>Avvio dell'attività (Art. 20 c. 1 e 7).</strong> <strong>Comunicazione congiunta</strong> affidante + affidatario al SUAP in modalità telematica quale <strong>atto propedeutico necessario prima di iniziare l'attività</strong>. Alla comunicazione si allegano contratto e scrittura privata sui criteri d'utilizzo della strumentazione. L'attività svolta in <strong>assenza di comunicazione congiunta è considerata abusiva</strong>.</div>
+  </div>
+
+  <div class="notice n-blue">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <div><strong>Attività diverse nello stesso locale (Art. 18 c. 4).</strong> Un'impresa di acconciatore che voglia concedere in affido una cabina per attività di estetista (o viceversa) deve <strong>preventivamente adeguare i locali</strong> — se necessario — e <strong>presentare apposita SCIA</strong> per la nuova attività con nomina del relativo Responsabile Tecnico, così da garantire tutti i requisiti igienico-sanitari e professionali previsti.</div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TATUAGGIO & PIERCING
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="s-tatuaggio">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Sezione 06 — Tatuaggio e piercing</div>
+    <h2 class="sec-title">Norme specifiche — Tatuaggio & Piercing</h2>
+    <p class="sec-desc">Obblighi documentali, limiti d'età, registro prestazioni, requisiti strutturali e igienici specifici previsti dalla Delibera G.R.C. 157/2010 e dalle Circolari ministeriali.</p>
+    <div class="sec-refs">
+      <span class="ref">Art. 6bis Requisiti</span>
+      <span class="ref">Art. 13 c. 6–7 Età</span>
+      <span class="ref">Art. 16bis Obblighi</span>
+      <span class="ref">Art. 29bis Igiene</span>
+      <span class="ref">Del. G.R.C. 157/2010</span>
+      <span class="ref">Circ. Min. Sanità 05.02.1998 n. 2.9/156</span>
+      <span class="ref">Circ. Min. Sanità 16.07.1998 n. 2.8/633</span>
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">👶</span>
+        Limiti d'età (Art. 13 c. 6–7)
+      </div>
+      <ul>
+        <li><strong>&lt; 14 anni</strong> → <strong>vietato in assoluto</strong> per tatuaggio e piercing</li>
+        <li><strong>14–18 anni</strong> → <strong>autorizzazione scritta</strong> degli esercenti la responsabilità genitoriale o del tutore</li>
+        <li>Piercing al <strong>padiglione auricolare</strong> → consentito anche in esercizi estetici, farmacie e attività commerciali inerenti, in spazi igienicamente idonei con sterilità garantita</li>
+        <li>Verifica dell'età obbligatoria <strong>prima</strong> di ogni procedura</li>
+      </ul>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">📋</span>
+        Schede obbligatorie (Art. 16bis)
+      </div>
+      <ul>
+        <li>Scheda informativa firmata dall'utente — <strong>All. 1a</strong> Del. G.R.C. 157/2010</li>
+        <li>Scheda di autorizzazione del minore — <strong>All. 1b</strong> Del. G.R.C. 157/2010</li>
+        <li>Scheda di attestazione rilasciata all'utente — <strong>All. 1c</strong> Del. G.R.C. 157/2010</li>
+        <li>Consenso informato firmato + autorizzazione trattamento dati (D.Lgs. 196/2003 e s.m.i.)</li>
+      </ul>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">📖</span>
+        Registro prestazioni (Art. 16bis)
+      </div>
+      <ul>
+        <li>Generalità complete del cliente</li>
+        <li>Procedura effettuata</li>
+        <li>Autorizzazione di genitori/tutore (se cliente minorenne)</li>
+        <li>Dichiarazione di <strong>consenso informato</strong> firmata</li>
+        <li>Dichiarazione sul <strong>trattamento dei dati personali</strong></li>
+        <li><strong>Custodito presso il locale autorizzato</strong></li>
+      </ul>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">📌</span>
+        Esposizione obbligatoria (Art. 16bis)
+      </div>
+      <ul>
+        <li><strong>"Memorandum"</strong> di cui alla Circolare Ministero Sanità 16.07.1998 n. 2.8/633 esposto in modo ben visibile nel locale</li>
+        <li>Tabella tariffe esposta in maniera visibile in prossimità della cassa</li>
+        <li>Copia conforme della SCIA custodita nel locale</li>
+        <li>Cartello orario visibile anche dall'esterno</li>
+      </ul>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">📑</span>
+        Attestazione all'utente (Art. 16bis)
+      </div>
+      <div class="card-body">
+        <p>L'operatore rilascia all'utente un'<strong>attestazione su carta intestata, a firma dell'operatore</strong>, secondo il modello <strong>All. 1c</strong> della Del. G.R.C. 157/2010, riportante:</p>
+        <ul style="margin-top:10px">
+          <li>Generalità del soggetto sottoposto alla prestazione</li>
+          <li>Tipologia della prestazione (tatuaggio o piercing)</li>
+          <li>Data di effettuazione</li>
+          <li>Materiale utilizzato</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card hover">
+      <div class="card-eyebrow">
+        <span class="ic">🏗️</span>
+        Requisiti strutturali (Art. 29bis)
+      </div>
+      <div class="card-body">
+        <p>Gli esercizi di tatuaggio e piercing, in considerazione degli specifici rischi sanitari, rispettano — oltre alle norme comuni — tutte le prescrizioni contenute in:</p>
+        <ul style="margin-top:10px">
+          <li>Del. G.R.C. n. 157 del 25.02.2010</li>
+          <li>Circ. Min. Sanità 05.02.1998 n. 2.9/156 (Linee guida)</li>
+          <li>Circ. Min. Sanità 16.07.1998 n. 2.8/633 (Chiarimenti C.S.S.)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="notice n-gold">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+    <div><strong>Disposizione transitoria (Art. 34 c. 2–3).</strong> Gli esercizi di tatuaggio e piercing esistenti alla data di entrata in vigore delle modifiche al Regolamento possono continuare l'attività nel rispetto delle prescrizioni contenute nella Del. G.R.C. 157/2010 e nelle citate Circolari ministeriali, e sono tenuti a presentare <strong>SCIA entro 6 mesi</strong> dall'entrata in vigore delle modifiche.</div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SANZIONI
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="s-sanzioni">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Sezione 07 — Apparato sanzionatorio</div>
+    <h2 class="sec-title">Sanzioni amministrative</h2>
+    <p class="sec-desc">Fonti normative: Art. 5 L. 174/2005 · Art. 12 L. 1/1990 · Art. 7-bis D.Lgs. 267/2000. Modalità applicative: L. 241/1990 · L. 689/1981.</p>
+    <div class="sec-refs">
+      <span class="ref">Art. 30 Fonti</span>
+      <span class="ref">Art. 31 Pecuniarie</span>
+      <span class="ref">Art. 32 Sospensione</span>
+      <span class="ref">Art. 33 Decadenza</span>
+    </div>
+  </div>
+
+  <!-- TABELLA SANZIONI -->
+  <div class="table-wrap">
+    <table class="sanz">
+      <thead>
+        <tr>
+          <th style="width:34%">Violazione</th>
+          <th>Minimo</th>
+          <th>Massimo</th>
+          <th>P.M.R.</th>
+          <th>Misura accessoria</th>
+          <th>Fonte</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Acconciatore</strong> — esercizio senza SCIA e/o senza requisiti morali o professionali</td>
+          <td class="num">€ 250,00</td>
+          <td class="num">€ 5.000,00</td>
+          <td class="num"><span class="sanz-badge b-orange">€ 500,00</span></td>
+          <td>Cessazione immediata attività</td>
+          <td><span class="sanz-badge b-gold">Art. 31 c. 1</span></td>
+        </tr>
+        <tr>
+          <td><strong>Estetista</strong> — esercizio senza SCIA</td>
+          <td class="num">€ 516,46</td>
+          <td class="num">€ 1.032,91</td>
+          <td class="num"><span class="sanz-badge b-green">€ 344,30</span></td>
+          <td>Cessazione immediata attività</td>
+          <td><span class="sanz-badge b-gold">Art. 31 c. 2</span></td>
+        </tr>
+        <tr>
+          <td><strong>Estetista</strong> — esercizio senza o perdita requisiti professionali</td>
+          <td class="num">€ 516,46</td>
+          <td class="num">€ 2.582,28</td>
+          <td class="num"><span class="sanz-badge b-green">€ 860,76</span></td>
+          <td>Cessazione immediata attività</td>
+          <td><span class="sanz-badge b-gold">Art. 31 c. 3</span></td>
+        </tr>
+        <tr>
+          <td><strong>Tatuaggio / Piercing</strong> — esercizio senza SCIA e/o senza requisiti morali o professionali</td>
+          <td class="num">€ 25,00</td>
+          <td class="num">€ 500,00</td>
+          <td class="num"><span class="sanz-badge b-orange">€ 50,00</span></td>
+          <td>Cessazione immediata attività</td>
+          <td><span class="sanz-badge b-gold">Art. 31 c. 4</span></td>
+        </tr>
+        <tr>
+          <td><strong>Inosservanza</strong> del provvedimento di cessazione/sospensione entro <strong>5 giorni</strong> dalla notifica</td>
+          <td class="num">€ 25,00</td>
+          <td class="num">€ 500,00</td>
+          <td class="num"><span class="sanz-badge b-orange">€ 50,00</span></td>
+          <td>Chiusura coattiva (Polizia Locale)</td>
+          <td><span class="sanz-badge b-gold">Art. 31 c. 5</span></td>
+        </tr>
+        <tr>
+          <td><strong>Violazioni generiche</strong> del Regolamento non altrimenti sanzionate da legge o norma specifica</td>
+          <td class="num">€ 25,00</td>
+          <td class="num">€ 500,00</td>
+          <td class="num"><span class="sanz-badge b-orange">€ 50,00</span></td>
+          <td>—</td>
+          <td><span class="sanz-badge b-gold">Art. 31 c. 6</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PMR -->
+  <div class="pmr">
+    <div class="pmr-label">⚡ P.M.R. · Formula</div>
+    <div class="pmr-formula">
+      <strong>Art. 16 L. 689/1981</strong> — pagamento entro 60 giorni dalla contestazione o notifica.<br>
+      PMR = il <strong>minore</strong> tra: <strong>doppio del minimo</strong> e <strong>un terzo del massimo</strong>
+    </div>
+    <div class="pmr-result">più favorevole al trasgressore</div>
+  </div>
+
+  <div class="notice n-blue">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <div>Il P.M.R. si calcola confrontando le due misure e applicando quella più favorevole al trasgressore: <strong>2 × minimo</strong> oppure <strong>⅓ del massimo</strong>. Per le sanzioni di questo Regolamento:
+      <br>• Acconciatore (€ 250–5.000) → PMR <strong>€ 500,00</strong> (2× min., più favorevole di ⅓ max. = € 1.666,67)
+      <br>• Estetista senza SCIA (€ 516,46–1.032,91) → PMR <strong>€ 344,30</strong> (⅓ max., più favorevole di 2× min. = € 1.032,92)
+      <br>• Estetista senza requisiti (€ 516,46–2.582,28) → PMR <strong>€ 860,76</strong> (⅓ max.)
+      <br>• Tatuaggio/piercing e violazioni generiche (€ 25–500) → PMR <strong>€ 50,00</strong> (2× min.)
+      <br><br>L'oblazione <strong>estingue la violazione amministrativa</strong> ma <strong>non preclude la decadenza in caso di recidiva</strong> (Art. 32 c. 4).
+    </div>
+  </div>
+
+  <!-- CASI GRAVI -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-eyebrow">
+      <span class="ic">⚠️</span>
+      Casi di particolare gravità — sospensione coattiva (Art. 32 c. 2)
+    </div>
+    <ul>
+      <li>Inosservanza di <strong>norme igienico-sanitarie</strong></li>
+      <li>Esercizio dell'attività in <strong>assenza del Responsabile Tecnico</strong></li>
+      <li>Mancata comunicazione al Comune di <strong>variazioni soggettive e/o oggettive entro 30 giorni</strong> dal verificarsi</li>
+    </ul>
+  </div>
+
+  <!-- LADDER RECIDIVA -->
+  <div class="ladder">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Prima violazione grave</div>
+        <div class="step-sub">Art. 32 c. 3 — previa contestazione, con assegnazione di termine per osservazioni</div>
+      </div>
+      <div class="step-pill">Sospensione · 3 giorni</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Prima recidiva (entro 365 gg dalla prima violazione)</div>
+        <div class="step-sub">Art. 32 c. 4 lett. a) — medesima violazione per due volte in un anno</div>
+      </div>
+      <div class="step-pill">Sospensione · 5 giorni</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Seconda recidiva (entro 365 gg dalla prima violazione)</div>
+        <div class="step-sub">Art. 32 c. 4 lett. b)</div>
+      </div>
+      <div class="step-pill">Sospensione · 10 giorni</div>
+    </div>
+    <div class="step final">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">Terza recidiva — Decadenza</div>
+        <div class="step-sub">Art. 32 ult. cpv. — il Dirigente pronuncia la decadenza ex Art. 33 c. 1 lett. g)</div>
+      </div>
+      <div class="step-pill">Decadenza</div>
+    </div>
+  </div>
+
+  <div class="notice n-red">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+    <div><strong>Chiusura coattiva (Art. 31 c. 5).</strong> In caso di inosservanza del provvedimento di cessazione o sospensione entro i 5 giorni dalla notifica, il Dirigente del competente Servizio dispone la <strong>chiusura coattiva dell'esercizio incaricando la Polizia Locale</strong> di porre in essere le necessarie attività, oltre all'applicazione della sanzione pecuniaria ex Art. 31 c. 4.</div>
+  </div>
+
+  <div class="notice n-gold">
+    <svg class="notice-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+    <div><strong>Iter sanzionatorio (Art. 30 c. 2).</strong> Irrogazione e riscossione coattiva sono effettuate osservando le disposizioni della <strong>L. 7.08.1990 n. 241</strong> e della <strong>L. 24.11.1981 n. 689</strong>. La recidiva è configurata anche se si è proceduto al pagamento della sanzione mediante oblazione per la precedente violazione (Art. 32 c. 4).</div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     GENERATORE VERBALE
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="s-verbale">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Sezione 08 — Strumento operativo</div>
+    <h2 class="sec-title">Generatore del corpo del verbale</h2>
+    <p class="sec-desc">Seleziona la fattispecie, compila i dati effettivamente accertati sul posto e ottieni il corpo descrittivo pronto alla trascrizione sul modello di verbale di accertamento di illecito amministrativo.</p>
+    <div class="sec-refs">
+      <span class="ref">Art. 31 Reg.</span>
+      <span class="ref">L. 174/2005</span>
+      <span class="ref">L. 1/1990</span>
+      <span class="ref">Art. 7-bis D.Lgs. 267/2000</span>
+      <span class="ref">L. 689/1981</span>
+    </div>
+  </div>
+
+  <div class="vg-card">
+
+    <div class="vg-banner">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><strong>I campi lasciati vuoti vengono automaticamente omessi.</strong> Compila soltanto i dati effettivamente accertati: il testo si adatta di conseguenza.</span>
+    </div>
+
+    <div class="vg-label">Fattispecie</div>
+    <select class="vg-select" id="vg-sel" onchange="vgOnChange()">
+      <option value="">— Seleziona una fattispecie —</option>
+      <optgroup label="✂️ Acconciatore">
+        <option value="acc_scia">Esercizio senza SCIA</option>
+        <option value="acc_req">Esercizio senza requisiti professionali</option>
+        <option value="acc_rt">Esercizio in assenza del Responsabile Tecnico</option>
+        <option value="acc_var">Mancata comunicazione variazioni (&gt; 30 gg)</option>
+      </optgroup>
+      <optgroup label="💅 Estetista">
+        <option value="est_scia">Esercizio senza SCIA</option>
+        <option value="est_req">Esercizio senza requisiti professionali</option>
+        <option value="est_rt">Esercizio in assenza del Responsabile Tecnico</option>
+      </optgroup>
+      <optgroup label="🖊️ Tatuaggio / Piercing">
+        <option value="tat_scia">Esercizio senza SCIA o senza requisiti</option>
+        <option value="tat_eta">Procedura su minore senza autorizzazione</option>
+        <option value="tat_reg">Mancata tenuta Registro prestazioni</option>
+        <option value="tat_scheda">Mancata compilazione scheda/consenso informato</option>
+      </optgroup>
+      <optgroup label="🪑 Affido Poltrona / Cabina">
+        <option value="aff_comm">Affido senza comunicazione congiunta</option>
+        <option value="aff_limiti">Affido oltre i limiti numerici</option>
+        <option value="aff_assenza">Affidatario in assenza dell'affidante</option>
+      </optgroup>
+      <optgroup label="📋 Violazioni generiche">
+        <option value="gen_tariffe">Mancata esposizione tabella tariffe</option>
+        <option value="gen_scia_cust">Mancata custodia copia SCIA</option>
+        <option value="gen_orario">Mancata esposizione cartello orario</option>
+        <option value="gen_inosserv">Inosservanza provvedimento di cessazione/sospensione</option>
+      </optgroup>
+    </select>
+
+    <div class="vg-meta" id="vg-meta">
+      <div class="vg-meta-item">
+        <div class="vg-meta-key">Norma violata</div>
+        <div class="vg-meta-val" id="vg-m-norma" style="color:var(--blue)">—</div>
+      </div>
+      <div class="vg-meta-item">
+        <div class="vg-meta-key">Sanzione</div>
+        <div class="vg-meta-val" id="vg-m-san" style="color:var(--gold)">—</div>
+      </div>
+      <div class="vg-meta-item">
+        <div class="vg-meta-key">P.M.R.</div>
+        <div class="vg-meta-val" id="vg-m-pmr" style="color:var(--orange)">—</div>
+      </div>
+      <div class="vg-meta-item">
+        <div class="vg-meta-key">Misura accessoria</div>
+        <div class="vg-meta-val" id="vg-m-acc" style="color:var(--red)">—</div>
+      </div>
+    </div>
+
+    <div class="vg-empty" id="vg-empty">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+      Seleziona una fattispecie per iniziare la compilazione.
+    </div>
+
+    <div class="vg-fields" id="vg-fields">
+
+      <div class="vg-row">
+        <div>
+          <div class="vg-label">Insegna / Denominazione esercizio</div>
+          <input type="text" class="vg-input" id="vg-esercizio" placeholder='es. "Capelli d\'Autore"'>
+        </div>
+        <div>
+          <div class="vg-label">Tipologia attività accertata</div>
+          <input type="text" class="vg-input" id="vg-attivita" placeholder="es. parrucchiere per donna">
+        </div>
+      </div>
+
+      <div class="vg-row">
+        <div>
+          <div class="vg-label">Clienti presenti all'accesso</div>
+          <input type="text" class="vg-input" id="vg-clienti" placeholder="es. n. 2 clienti">
+        </div>
+        <div>
+          <div class="vg-label">Operatori presenti</div>
+          <input type="text" class="vg-input" id="vg-operatori" placeholder="es. n. 1 operatore">
+        </div>
+      </div>
+
+      <div id="vg-wrap-rt" style="display:none">
+        <div class="vg-label">Nominativo Responsabile Tecnico designato</div>
+        <input type="text" class="vg-input" id="vg-rt" placeholder="es. Sig. Mario Rossi, nato a...">
+      </div>
+
+      <div id="vg-wrap-affido" style="display:none">
+        <div class="vg-row">
+          <div>
+            <div class="vg-label">Affidante (titolare esercizio)</div>
+            <input type="text" class="vg-input" id="vg-affidante" placeholder="es. Sig.ra Anna Esposito">
+          </div>
+          <div>
+            <div class="vg-label">Affidatario</div>
+            <input type="text" class="vg-input" id="vg-affidatario" placeholder="es. Sig. Luigi Bianchi">
+          </div>
+        </div>
+      </div>
+
+      <div id="vg-wrap-minore" style="display:none">
+        <div class="vg-row">
+          <div>
+            <div class="vg-label">Età del soggetto sottoposto</div>
+            <input type="text" class="vg-input" id="vg-eta" placeholder="es. 16">
+          </div>
+          <div>
+            <div class="vg-label">Procedura in corso</div>
+            <input type="text" class="vg-input" id="vg-proc" placeholder="es. tatuaggio al polso">
+          </div>
+        </div>
+      </div>
+
+      <div class="vg-label">Note aggiuntive / dettagli</div>
+      <textarea class="vg-input" id="vg-note" rows="3" placeholder="Elementi ulteriori rilevati (es. specifica variazione non comunicata, dettagli impianto, luogo della postazione oggetto d'affido, ecc.)"></textarea>
+
+      <button class="vg-btn" onclick="vgGenera()">Genera corpo verbale</button>
+
+    </div>
+
+    <div class="vg-output" id="vg-output">
+      <div class="vg-output-head">
+        <span>Corpo del verbale</span>
+        <button class="vg-copy" id="vg-copy-btn" onclick="vgCopia()">Copia</button>
+      </div>
+      <div class="vg-text" id="vg-text"></div>
+      <div class="vg-sanz" id="vg-san-row"></div>
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   NAV — Tab switching
+═══════════════════════════════════════════════════════ */
+function showSec(id, btn){
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════════════════════════════
+   GENERATORE VERBALE — Dati fattispecie
+═══════════════════════════════════════════════════════ */
+const VG_FATT = {
+
+  /* ── ACCONCIATORE ── */
+  acc_scia: {
+    norma:      'Art. 31 c. 1 Reg. · Art. 5 L. 174/2005 · Art. 7-bis D.Lgs. 267/2000',
+    sanzione:   '€ 250 – € 5.000',
+    pmr:        '€ 500,00',
+    accessoria: 'Cessazione immediata attività',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco veniva accertato che nell'esercizio${d.es} era svolta attività di acconciatore${d.att ? ' ' + d.att : ''}.`;
+      if (d.clienti)   t += ` All'atto dell'accesso risultavano presenti ${d.clienti}.`;
+      if (d.operatori) t += ` Si constatava la presenza di ${d.operatori} intenti allo svolgimento di prestazioni di acconciatura.`;
+      t += `\n\nRichiesta l'esibizione della Segnalazione Certificata di Inizio Attività, il soggetto presente non era in grado di produrre il relativo titolo abilitativo. Effettuata verifica telematica sul portale SUAP del Comune di Napoli, non risultava presentata alcuna SCIA per l'esercizio dell'attività di acconciatore nell'unità locale in oggetto.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 31, comma 1, del Regolamento per l'esercizio delle attività di acconciatore, estetista, tatuaggio e piercing del Comune di Napoli (D.C.C. n. 18/2018, mod. D.C.C. n. 6/2021), in combinato disposto con l'art. 5 della L. 17.08.2005 n. 174, in quanto l'attività veniva esercitata in assenza della prescritta SCIA.\n\nSi disponeva l'immediata cessazione dell'attività con diffida ad astenersi dal proseguire l'esercizio sino alla regolarizzazione del titolo abilitativo.`;
+      return t;
+    }
+  },
+
+  acc_req: {
+    norma:      'Art. 31 c. 1 Reg. · Art. 5 L. 174/2005 · Art. 7-bis D.Lgs. 267/2000',
+    sanzione:   '€ 250 – € 5.000',
+    pmr:        '€ 500,00',
+    accessoria: 'Cessazione immediata attività',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco veniva accertato che nell'esercizio${d.es} era svolta attività di acconciatore${d.att ? ' ' + d.att : ''}.`;
+      if (d.clienti)   t += ` All'atto dell'accesso risultavano presenti ${d.clienti}.`;
+      if (d.operatori) t += ` Si constatava la presenza di ${d.operatori}.`;
+      t += `\n\nRichiesta l'esibizione della documentazione attestante l'abilitazione professionale prevista dall'art. 3 della L. 17.08.2005 n. 174, il soggetto presente non era in grado di produrre il relativo titolo. All'esito della verifica risultava che l'esercizio dell'attività era condotto in assenza del prescritto requisito di abilitazione professionale in capo al titolare ovvero al Responsabile Tecnico designato.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 31, comma 1, del Regolamento comunale, in combinato disposto con l'art. 5 della L. 174/2005, in quanto l'attività veniva esercitata in assenza dei necessari requisiti professionali.\n\nSi disponeva l'immediata cessazione dell'attività.`;
+      return t;
+    }
+  },
+
+  acc_rt: {
+    norma:      'Art. 32 c. 2 lett. b) Reg. · Art. 7-bis D.Lgs. 267/2000',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: 'Sospensione 3 gg (caso di particolare gravità)',
+    campi: ['rt'],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco veniva accertato che nell'esercizio${d.es} era svolta attività di acconciatore${d.att ? ' ' + d.att : ''}.`;
+      if (d.clienti)   t += ` All'atto dell'accesso risultavano presenti ${d.clienti}.`;
+      if (d.operatori) t += ` Si riscontrava la presenza di ${d.operatori} intenti allo svolgimento di prestazioni.`;
+      t += `\n\nAll'esito della verifica della SCIA presentata al SUAP risultava che il Responsabile Tecnico designato`;
+      if (d.rt) t += `, identificato in ${d.rt},`;
+      t += ` non era fisicamente presente nei locali al momento del controllo, né risultava garantita la presenza di un sostituto munito dei prescritti requisiti professionali di cui all'art. 3 della L. 174/2005.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 32, comma 2, lettera b), del Regolamento comunale, il quale configura quale caso di particolare gravità l'esercizio dell'attività in assenza del Responsabile Tecnico, con conseguente applicazione della sospensione dell'attività per giorni tre ai sensi del comma 3 del medesimo articolo.`;
+      return t;
+    }
+  },
+
+  acc_var: {
+    norma:      'Art. 32 c. 2 lett. c) Reg. · Art. 16 Reg.',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: 'Sospensione 3 gg (caso di particolare gravità)',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco veniva accertato che nell'esercizio${d.es}`;
+      t += d.att ? `, esercente attività di ${d.att},` : `, esercente attività di acconciatore,`;
+      t += ` erano intervenute variazioni soggettive e/o oggettive rispetto a quanto dichiarato nell'ultima SCIA presentata al SUAP.`;
+      if (d.note) t += ` In particolare: ${d.note}.`;
+      t += `\n\nAll'esito della verifica, le predette variazioni non risultavano comunicate al SUAP competente nel termine di trenta giorni dal verificarsi delle medesime, come prescritto dall'art. 16 del Regolamento comunale.\n\nLa condotta accertata integra la violazione dell'art. 32, comma 2, lettera c), del Regolamento, che configura quale caso di particolare gravità la mancata comunicazione di variazioni entro il termine prescritto, con conseguente applicazione della sospensione dell'attività per giorni tre ai sensi del comma 3 del medesimo articolo.`;
+      return t;
+    }
+  },
+
+  /* ── ESTETISTA ── */
+  est_scia: {
+    norma:      'Art. 31 c. 2 Reg. · Art. 12 L. 1/1990 · Art. 7-bis D.Lgs. 267/2000',
+    sanzione:   '€ 516,46 – € 1.032,91',
+    pmr:        '€ 344,30',
+    accessoria: 'Cessazione immediata attività',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco veniva accertato che nell'esercizio${d.es} era svolta attività di estetista${d.att ? ' ' + d.att : ''}.`;
+      if (d.clienti)   t += ` All'atto dell'accesso risultavano presenti ${d.clienti}.`;
+      if (d.operatori) t += ` Si constatava la presenza di ${d.operatori} intenti allo svolgimento di trattamenti estetici.`;
+      t += `\n\nRichiesta l'esibizione della Segnalazione Certificata di Inizio Attività, il soggetto presente non era in grado di produrre il relativo titolo abilitativo. Effettuata verifica telematica sul portale SUAP del Comune di Napoli, non risultava presentata alcuna SCIA per l'esercizio dell'attività di estetista nell'unità locale in oggetto.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 31, comma 2, del Regolamento per l'esercizio delle attività di acconciatore, estetista, tatuaggio e piercing del Comune di Napoli, in combinato disposto con l'art. 12 della L. 04.01.1990 n. 1, in quanto l'attività veniva esercitata in assenza della prescritta SCIA.\n\nSi disponeva l'immediata cessazione dell'attività con diffida ad astenersi dal proseguire l'esercizio sino alla regolarizzazione del titolo abilitativo.`;
+      return t;
+    }
+  },
+
+  est_req: {
+    norma:      'Art. 31 c. 3 Reg. · Art. 12 L. 1/1990 · Art. 7-bis D.Lgs. 267/2000',
+    sanzione:   '€ 516,46 – € 2.582,28',
+    pmr:        '€ 860,76',
+    accessoria: 'Cessazione immediata attività',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco veniva accertato che nell'esercizio${d.es} era svolta attività di estetista${d.att ? ' ' + d.att : ''}.`;
+      if (d.clienti)   t += ` All'atto dell'accesso risultavano presenti ${d.clienti}.`;
+      if (d.operatori) t += ` Si riscontrava la presenza di ${d.operatori}.`;
+      t += `\n\nRichiesta l'esibizione della documentazione attestante la qualificazione professionale prevista dall'art. 3 della L. 04.01.1990 n. 1, il soggetto presente non era in grado di produrre il relativo titolo. All'esito della verifica risultava che l'esercizio dell'attività era condotto in assenza del prescritto requisito di qualificazione professionale in capo al titolare ovvero al Responsabile Tecnico designato.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 31, comma 3, del Regolamento comunale, in combinato disposto con l'art. 12 della L. 1/1990, in quanto l'attività veniva esercitata in assenza dei necessari requisiti professionali.\n\nSi disponeva l'immediata cessazione dell'attività.`;
+      return t;
+    }
+  },
+
+  est_rt: {
+    norma:      'Art. 32 c. 2 lett. b) Reg. · Art. 7-bis D.Lgs. 267/2000',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: 'Sospensione 3 gg (caso di particolare gravità)',
+    campi: ['rt'],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco veniva accertato che nell'esercizio${d.es} era svolta attività di estetista${d.att ? ' ' + d.att : ''}.`;
+      if (d.clienti)   t += ` All'atto dell'accesso risultavano presenti ${d.clienti}.`;
+      if (d.operatori) t += ` Si riscontrava la presenza di ${d.operatori}.`;
+      t += `\n\nAll'esito della verifica della SCIA presentata al SUAP risultava che il Responsabile Tecnico designato`;
+      if (d.rt) t += `, identificato in ${d.rt},`;
+      t += ` non era fisicamente presente nei locali al momento del controllo, né risultava garantita la presenza di un sostituto munito dei prescritti requisiti di qualificazione professionale di cui all'art. 3 della L. 1/1990.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 32, comma 2, lettera b), del Regolamento comunale, con conseguente applicazione della sospensione dell'attività per giorni tre ai sensi del comma 3 del medesimo articolo.`;
+      return t;
+    }
+  },
+
+  /* ── TATUAGGIO / PIERCING ── */
+  tat_scia: {
+    norma:      'Art. 31 c. 4 Reg. · Art. 7-bis D.Lgs. 267/2000',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: 'Cessazione immediata attività',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco veniva accertato che nell'esercizio${d.es} era svolta attività di tatuaggio e/o piercing${d.att ? ' ' + d.att : ''}.`;
+      if (d.clienti)   t += ` All'atto dell'accesso risultavano presenti ${d.clienti}.`;
+      if (d.operatori) t += ` Si riscontrava la presenza di ${d.operatori} intenti allo svolgimento di procedure.`;
+      t += `\n\nRichiesta l'esibizione della Segnalazione Certificata di Inizio Attività e della documentazione attestante il possesso dei requisiti professionali prescritti — ovvero attestato di qualifica alla professione e attestato di corso formativo rilasciato dalle AA.SS.LL. ai sensi della Del. G.R.C. n. 157 del 25.02.2010 — il soggetto presente non era in grado di produrre la predetta documentazione. Effettuata verifica telematica sul portale SUAP del Comune di Napoli, non risultava presentata alcuna SCIA per l'esercizio dell'attività nell'unità locale in oggetto.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 31, comma 4, del Regolamento comunale, in quanto l'attività veniva esercitata in assenza della prescritta SCIA e/o dei necessari requisiti morali e professionali.\n\nSi disponeva l'immediata cessazione dell'attività.`;
+      return t;
+    }
+  },
+
+  tat_eta: {
+    norma:      'Art. 13 c. 7 Reg. · Art. 31 c. 6 Reg. · Art. 7-bis D.Lgs. 267/2000',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: 'Cessazione immediata della procedura',
+    campi: ['minore'],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco, nell'esercizio${d.es}`;
+      t += d.proc ? ` veniva constatata l'esecuzione in corso di ${d.proc}` : ` veniva constatata l'esecuzione in corso di una procedura di tatuaggio o piercing`;
+      t += d.eta ? ` su soggetto di anni ${d.eta}.` : ` su soggetto di età apparentemente minore.`;
+      t += `\n\nAll'esito degli accertamenti d'identità veniva confermata la minore età del soggetto sottoposto alla procedura. Richiesta l'esibizione dell'autorizzazione scritta degli esercenti la responsabilità genitoriale o del tutore, prescritta dall'art. 13, comma 7, del Regolamento comunale per i soggetti di età compresa tra i quattordici e i diciotto anni, il titolare/operatore non era in grado di produrre alcuna autorizzazione.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 13, comma 7, del Regolamento per l'esercizio delle attività di acconciatore, estetista, tatuaggio e piercing del Comune di Napoli, in quanto la procedura veniva eseguita su soggetto minore di anni diciotto in assenza della prescritta autorizzazione scritta degli esercenti la responsabilità genitoriale.\n\nSi disponeva l'immediata cessazione della procedura in corso.`;
+      return t;
+    }
+  },
+
+  tat_reg: {
+    norma:      'Art. 16bis Reg. · Art. 31 c. 6 Reg.',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: '—',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco, nell'esercizio di tatuaggio e/o piercing${d.es}`;
+      if (d.operatori) t += `, dove risultavano presenti ${d.operatori},`;
+      t += ` veniva richiesta l'esibizione del Registro delle prestazioni, la cui istituzione e custodia presso il locale autorizzato è prescritta dall'art. 16bis del Regolamento comunale.`;
+      t += `\n\nIl titolare/operatore presente non era in grado di esibire il predetto Registro, né risultava istituito o conservato in loco alcun documento equipollente recante le generalità dei clienti, le procedure effettuate e le dichiarazioni di consenso informato.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 16bis del Regolamento comunale, per mancata istituzione e/o tenuta del Registro delle prestazioni.`;
+      return t;
+    }
+  },
+
+  tat_scheda: {
+    norma:      'Art. 16bis Reg. · Del. G.R.C. 157/2010 · Art. 31 c. 6 Reg.',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: '—',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco, nell'esercizio di tatuaggio e/o piercing${d.es}`;
+      t += ` veniva richiesta l'esibizione della scheda informativa sottoscritta dall'utente (All. 1a Del. G.R.C. n. 157/2010) e del consenso informato con dichiarazione di trattamento dei dati personali, la cui raccolta e custodia è prescritta dall'art. 16bis del Regolamento comunale.`;
+      if (d.clienti) t += ` All'atto del controllo risultavano presenti ${d.clienti}.`;
+      t += `\n\nIl titolare/operatore presente non era in grado di esibire la predetta documentazione per il/i soggetto/i sottoposto/i a procedura, né risultava esposto in modo ben visibile nel locale il "Memorandum per chi si sottopone a tatuaggio o piercing" di cui alla Circolare del Ministero della Sanità del 16.07.1998 n. 2.8/633.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 16bis del Regolamento comunale, per mancata compilazione della scheda informativa/consenso informato e/o mancata esposizione del Memorandum prescritto.`;
+      return t;
+    }
+  },
+
+  /* ── AFFIDO ── */
+  aff_comm: {
+    norma:      'Art. 20 c. 7 Reg. · Art. 31 c. 6 Reg. · Art. 7-bis D.Lgs. 267/2000',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: 'Attività considerata abusiva — cessazione',
+    campi: ['affido'],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco, nell'esercizio${d.es}`;
+      if (d.affidante || d.affidatario) {
+        t += ` veniva constatato che ${d.affidatario || 'un soggetto terzo'} stava svolgendo attività`;
+        if (d.att) t += ` di ${d.att}`;
+        t += ` in regime di affido di poltrona/cabina`;
+        if (d.affidante) t += ` rispetto al titolare dell'esercizio ${d.affidante}`;
+        t += `.`;
+      } else {
+        t += ` veniva constatato che un soggetto terzo svolgeva attività in regime di affido di poltrona/cabina.`;
+      }
+      if (d.clienti) t += ` All'atto dell'accesso risultavano presenti ${d.clienti}.`;
+      t += `\n\nRichiesta l'esibizione della comunicazione congiunta (affidante e affidatario) trasmessa al SUAP in modalità telematica, prescritta dall'art. 20, comma 1, del Regolamento comunale quale atto propedeutico necessario per l'avvio dell'attività di affido, il soggetto presente non era in grado di produrre il predetto documento. Effettuata verifica telematica, non risultava trasmessa alcuna comunicazione congiunta al SUAP per il rapporto di affido in esame.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 20, comma 7, del Regolamento comunale, ai sensi del quale l'attività svolta in assenza della comunicazione congiunta è da considerarsi abusiva.\n\nSi disponeva la cessazione dell'attività dell'affidatario.`;
+      return t;
+    }
+  },
+
+  aff_limiti: {
+    norma:      'Art. 21 Reg. · Art. 31 c. 6 Reg.',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: 'Attività abusiva per le unità in eccesso',
+    campi: ['affido'],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco, nell'esercizio${d.es}`;
+      t += ` veniva accertato che erano in esercizio poltrone/cabine in affido in numero superiore a quello consentito dall'art. 21 del Regolamento comunale in rapporto al numero di dipendenti dell'impresa affidante.`;
+      if (d.note) t += ` In particolare: ${d.note}.`;
+      t += `\n\nAll'esito della verifica del numero di dipendenti dell'affidante${d.affidante ? ' ' + d.affidante : ''} e del numero di rapporti di affido comunicati al SUAP, risultava superato il limite massimo di poltrone/cabine concedibili in affido ai sensi dell'art. 21, comma 1, del Regolamento.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 21 del Regolamento comunale, in quanto l'affido di poltrona/cabina oltre i limiti ivi indicati è considerato attività abusiva per le unità eccedenti.`;
+      return t;
+    }
+  },
+
+  aff_assenza: {
+    norma:      'Art. 22 c. 1 Reg. · Art. 31 c. 6 Reg.',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: '—',
+    campi: ['affido'],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco, nell'esercizio${d.es}`;
+      if (d.affidatario) t += ` veniva accertato che ${d.affidatario} stava svolgendo la propria attività in regime di affido di poltrona/cabina`;
+      else               t += ` veniva accertato che l'affidatario stava svolgendo la propria attività`;
+      t += `, in assenza dell'affidante${d.affidante ? ' ' + d.affidante : ''} o del relativo Responsabile Tecnico.`;
+      if (d.clienti) t += ` All'atto del controllo risultavano presenti ${d.clienti}.`;
+      if (d.note)    t += `\n\n${d.note}.`;
+      t += `\n\nL'art. 22, comma 1, del Regolamento comunale dispone espressamente che l'affidatario non può esercitare la propria attività in assenza dell'affidante o del Responsabile Tecnico di questi. La condotta accertata integra pertanto la violazione della citata disposizione.`;
+      return t;
+    }
+  },
+
+  /* ── VIOLAZIONI GENERICHE ── */
+  gen_tariffe: {
+    norma:      'Art. 16 Reg. · Art. 31 c. 6 Reg.',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: '—',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco, nell'esercizio${d.es}`;
+      if (d.att) t += ` esercente attività di ${d.att},`;
+      t += ` veniva constatata la mancata esposizione della tabella delle tariffe praticate per ogni singola prestazione in modo ben visibile in prossimità della cassa, come prescritto dall'art. 16 del Regolamento comunale.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 16 del Regolamento per l'esercizio delle attività di acconciatore, estetista, tatuaggio e piercing del Comune di Napoli.`;
+      return t;
+    }
+  },
+
+  gen_scia_cust: {
+    norma:      'Art. 16 Reg. · Art. 31 c. 6 Reg.',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: '—',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco, nell'esercizio${d.es}`;
+      if (d.att) t += ` esercente attività di ${d.att},`;
+      t += ` veniva richiesta l'esibizione della copia conforme della Segnalazione Certificata di Inizio Attività rilasciata dal SUAP, la cui custodia nel locale è prescritta dall'art. 16 del Regolamento comunale ai fini dell'esibizione agli organi di controllo.`;
+      t += ` Il soggetto presente non era in grado di produrre il predetto documento.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 16 del Regolamento comunale, per mancata custodia della copia conforme della SCIA.`;
+      return t;
+    }
+  },
+
+  gen_orario: {
+    norma:      'Art. 16 · Art. 17 Reg. · Art. 31 c. 6 Reg.',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: '—',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco, nell'esercizio${d.es}`;
+      if (d.att) t += ` esercente attività di ${d.att},`;
+      t += ` veniva constatata la mancata esposizione del cartello riportante l'orario di attività, che ai sensi dell'art. 16 del Regolamento comunale deve essere esposto in modo visibile anche dall'esterno dell'esercizio durante l'apertura e deve essere conforme a quanto stabilito con ordinanza del Sindaco ai sensi dell'art. 17 del medesimo Regolamento.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione degli artt. 16 e 17 del Regolamento per l'esercizio delle attività di acconciatore, estetista, tatuaggio e piercing del Comune di Napoli.`;
+      return t;
+    }
+  },
+
+  gen_inosserv: {
+    norma:      'Art. 31 c. 5 Reg. · Art. 7-bis D.Lgs. 267/2000',
+    sanzione:   '€ 25 – € 500',
+    pmr:        '€ 50,00',
+    accessoria: 'Chiusura coattiva (Polizia Locale)',
+    campi: [],
+    testo: (d) => {
+      let t = `A seguito di controllo in loco, nell'esercizio${d.es}`;
+      if (d.att) t += ` esercente attività di ${d.att},`;
+      t += ` veniva accertato che l'attività era in corso nonostante l'intervenuta notifica di provvedimento di cessazione/sospensione dell'attività, adottato dal Dirigente del Servizio comunale competente.`;
+      t += ` Il provvedimento risultava notificato in data antecedente al presente accertamento, con assegnazione del termine di cinque giorni per la ottemperanza, ai sensi dell'art. 31, comma 5, del Regolamento comunale.`;
+      if (d.note) t += `\n\n${d.note}.`;
+      t += `\n\nLa condotta accertata integra la violazione dell'art. 31, comma 5, del Regolamento per l'esercizio delle attività di acconciatore, estetista, tatuaggio e piercing del Comune di Napoli.\n\nSi procedeva pertanto a richiedere la chiusura coattiva dell'esercizio, ai sensi del medesimo art. 31 comma 5, con trasmissione degli atti al Dirigente competente per i provvedimenti conseguenti.`;
+      return t;
+    }
+  }
+};
+
+/* ═══════════════════════════════════════════════════════
+   GENERATORE — Logica
+═══════════════════════════════════════════════════════ */
+function vgOnChange(){
+  const val  = document.getElementById('vg-sel').value;
+  const meta = document.getElementById('vg-meta');
+  const flds = document.getElementById('vg-fields');
+  const empt = document.getElementById('vg-empty');
+  const outp = document.getElementById('vg-output');
+
+  outp.style.display = 'none';
+
+  if(!val || !VG_FATT[val]){
+    meta.classList.remove('is-active');
+    flds.style.display = 'none';
+    empt.style.display = 'block';
+    return;
+  }
+
+  const f = VG_FATT[val];
+  document.getElementById('vg-m-norma').textContent = f.norma;
+  document.getElementById('vg-m-san').textContent   = f.sanzione;
+  document.getElementById('vg-m-pmr').textContent   = f.pmr;
+  document.getElementById('vg-m-acc').textContent   = f.accessoria;
+
+  meta.classList.add('is-active');
+  flds.style.display = 'block';
+  empt.style.display = 'none';
+
+  document.getElementById('vg-wrap-rt').style.display     = f.campi.includes('rt')     ? 'block' : 'none';
+  document.getElementById('vg-wrap-affido').style.display = f.campi.includes('affido') ? 'block' : 'none';
+  document.getElementById('vg-wrap-minore').style.display = f.campi.includes('minore') ? 'block' : 'none';
+}
+
+function vgGenera(){
+  const val = document.getElementById('vg-sel').value;
+  if(!val || !VG_FATT[val]) return;
+  const f = VG_FATT[val];
+
+  const g = (id) => {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  };
+
+  const d = {
+    es:          g('vg-esercizio') ? ` "${g('vg-esercizio')}"` : '',
+    att:         g('vg-attivita'),
+    clienti:     g('vg-clienti'),
+    operatori:   g('vg-operatori'),
+    rt:          g('vg-rt'),
+    affidante:   g('vg-affidante'),
+    affidatario: g('vg-affidatario'),
+    eta:         g('vg-eta'),
+    proc:        g('vg-proc'),
+    note:        g('vg-note')
+  };
+
+  const testo = f.testo(d);
+  document.getElementById('vg-text').textContent = testo;
+
+  document.getElementById('vg-san-row').innerHTML = `
+    <div class="vg-sanz-cell"><div class="vg-sanz-k">Norma violata</div><div class="vg-sanz-v" style="color:var(--blue)">${f.norma}</div></div>
+    <div class="vg-sanz-cell"><div class="vg-sanz-k">Sanzione</div><div class="vg-sanz-v" style="color:var(--gold)">${f.sanzione}</div></div>
+    <div class="vg-sanz-cell"><div class="vg-sanz-k">P.M.R.</div><div class="vg-sanz-v" style="color:var(--orange)">${f.pmr}</div></div>
+    <div class="vg-sanz-cell"><div class="vg-sanz-k">Accessoria</div><div class="vg-sanz-v" style="color:var(--red)">${f.accessoria}</div></div>`;
+
+  document.getElementById('vg-output').style.display = 'block';
+  const btn = document.getElementById('vg-copy-btn');
+  btn.textContent = 'Copia';
+  btn.classList.remove('ok');
+  document.getElementById('vg-output').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function vgCopia(){
+  const text = document.getElementById('vg-text').textContent;
+  const btn  = document.getElementById('vg-copy-btn');
+  const ok = () => {
+    btn.textContent = '✓ Copiato';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'Copia'; btn.classList.remove('ok'); }, 2400);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(ok).catch(() => fallbackCopy(text, ok));
+  } else {
+    fallbackCopy(text, ok);
+  }
+}
+
+function fallbackCopy(text, cb){
+  const el = document.createElement('textarea');
+  el.value = text;
+  document.body.appendChild(el);
+  el.select();
+  try { document.execCommand('copy'); cb(); } catch(e) {}
+  document.body.removeChild(el);
+}
+</script>
+
+</body>
+</html>
